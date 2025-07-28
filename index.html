@@ -1,305 +1,262 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.0.1">
-    <title>Yudhistira's Portofolio</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
-
-    <!-- Bootstrap core CSS -->
-<link href="../assets/dist/css/bootstrap.css" rel="stylesheet">
- <!-- Bootstrap CSS -->
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
+      .profile-img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      .bottom-content {
+        min-height: 200px;
+        border-top: 1px solid #ddd;
+        padding-top: 20px;
+        margin-top: 20px;
+      }
+      .icon-link {
+        all: unset;
+        cursor: pointer;
+        display: inline-block;
       }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
+      .icon-link img {
+        display: block;
+        width: 24px;
+        height: 24px;
+        border: none;
+        box-shadow: none;
+        background: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .icon-link:hover,
+      .icon-link:focus,
+      .icon-link:active {
+        background: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        color: inherit;
+      }
+
+      a.card:hover {
+        background-color: var(--bs-secondary-bg); /* Or a custom color */
+        transition: background-color 0.3s ease;
+        color: var(--bs-body-color); /* Ensure text remains visible */
+      }
+
+      .profile-img.shadow-rect {
+        width: 100%; /* full width of the column */
+        max-width: 300px; /* limit max size */
+        height: auto; /* maintain aspect ratio */
+        border-radius: 15px; /* rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* subtle shadow */
+        object-fit: cover; /* nicely crop if needed */
+        transition: transform 0.3s ease;
+      }
+
+      .profile-img.shadow-rect:hover {
+        transform: scale(1.05); /* gentle zoom on hover */
       }
     </style>
-    <!-- Custom styles for this template -->
-    <link href="album.css" rel="stylesheet">
   </head>
-  <body>
-    <header>
-  <div class="collapse bg-dark" id="navbarHeader">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">About</h4>
-          <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+  <body class="bg-dark">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-secondary px-4 py-2">
+      <div class="container-fluid text-white">
+        <!-- Left Side: Home + Name -->
+        <div class="d-flex align-items-center">
+          <!-- <a href="#" class="btn btn-light btn-sm me-3">Home</a> -->
+
+          <a
+            href="https://yudzyoga.github.io/"
+            target="_blank"
+            class="btn btn-outline-light btn-sm icon-link me-3"
+          >
+            <img
+              src="Images/home-icon.png"
+              alt="Home"
+              width="24"
+              height="24"
+              class="me-2"
+            />
+          </a>
+
+          <span class="fw-bold text-white">@yudzyoga</span>
         </div>
-        <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-white">Contact</h4>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-            <li><a href="#" class="text-white">Like on Facebook</a></li>
-            <li><a href="#" class="text-white">Email me</a></li>
-          </ul>
+
+        <!-- Right Side: GitHub + LinkedIn -->
+        <div class="ms-auto">
+          <a
+            href="https://github.com/yudzyoga"
+            target="_blank"
+            class="btn btn-outline-light btn-sm icon-link me-2"
+          >
+            <img
+              src="Images/github-icon.png"
+              alt="GitHub"
+              width="24"
+              height="24"
+              class="me-2"
+            />
+          </a>
+          <a
+            href="https://linkedin.com/in/yudzyoga"
+            target="_blank"
+            class="btn btn-outline-light icon-link btn-sm"
+          >
+            <img
+              src="Images/linkedin-icon.png"
+              alt="LinkedIn"
+              width="24"
+              height="24"
+              class="me-2"
+            />
+          </a>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="navbar navbar-dark bg-dark shadow-sm">
-    <div class="container d-flex justify-content-between">
-      <a href="#" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        <strong>Portofolio</strong>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-  </div>
-</header>
+    </nav>
 
-<main role="main">
+    <!-- MAIN SECTION -->
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <!-- Image -->
+        <div class="col-md-4 text-center mb-4 mb-md-0">
+          <img
+            src="Images/other/me.jpg"
+            alt="Profile"
+            class="profile-img shadow-rect"
+          />
+        </div>
 
-  <section class="jumbotron text-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 text-right">
-          <img src='Images/other/IMG_0031 asf.jpg' height="180px" width="180px" class="rounded-circle">
-        </div>  
-        <div class="col-md-8 text-left">
+        <!-- Description -->
+        <div class="col-md-8">
           <h1>Yudhistira Yoga Semeru</h1>
-          <p class="lead text-muted">Robotics, Autonomous Vehicle, and AI enthusiast. Mechanical engineer that loves to code! Doing research for fun!</p>    
+          <p class="lead">
+            Robotics • Vision • Graphics | Visual Computing M.Sc. | Universität
+            des Saarlandes
+          </p>
+          <p>
+            I am a recent graduate with research focus on developing lightweight
+            and high-performance solutions for robotics, computer vision, and
+            computer graphics. Before that, I had working experience for 3.5
+            years in software engineering, computer vision, and augmented
+            reality to develop solutions for South-East Asia (SEA) companies. I
+            also had research experience in my bachelor for 3 years to develop
+            mobile soccer robots based on the RoboCup Middle Sized League.
+          </p>
+          <p>
+            Feel free to <a href="mailto:yudsyoga@gmail.com">contact me</a> if
+            you have any questions!
+          </p>
+
+          <a href="your-cv.pdf" class="btn btn-info" download>Resume</a>
         </div>
       </div>
-      <p>
-        <a href="#" class="btn btn-primary my-3">Projects</a>
-        <!-- <a href="./Certs/index.html" class="btn btn-secondary my-3">Certificates</a> -->
-        <a href="#" class="btn btn-secondary my-3">About Me!</a>
-      </p>
-    </div>
-  </section>
 
-  <div class="album py-5 bg-light">
-    <div class="container">
+      <!-- NAVIGATION BUTTONS -->
+      <div class="text-center mt-5">
+        <button
+          id="tab-projects"
+          class="btn btn-outline-secondary m-2 tab-btn"
+          onclick="showContent('projects')"
+        >
+          Projects
+        </button>
+        <button
+          id="tab-research"
+          class="btn btn-outline-secondary m-2 tab-btn"
+          onclick="showContent('research')"
+        >
+          Research
+        </button>
+        <button
+          id="tab-publications"
+          class="btn btn-outline-secondary m-2 tab-btn"
+          onclick="showContent('publications')"
+        >
+          Publications
+        </button>
+        <button
+          id="tab-contact"
+          class="btn btn-outline-secondary m-2 tab-btn"
+          onclick="showContent('contact')"
+        >
+          Contact
+        </button>
+      </div>
 
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-              <title>Placeholder</title>
-              <img src="Images/Dagozilla/Render Desain Robot/2019-MSL/1.jpg" width="100%" height="100%" fill="#aaa"/>
-            <div class="card-body">
-              <p class="card-text">3rd generation Mobile Soccer Robots of DAGOZILLA ITB.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View more ...</button>
-                </div>
-                <small class="text-muted">2018-2019</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-              <title>Placeholder</title>
-              <img src="Images/Dagozilla/Render Desain Robot/2018/Image.bmp" width="100%" height="100%" fill="#aaa"/>
-            <div class="card-body">
-              <p class="card-text">2nd generation Mobile Soccer Robots of DAGOZILLA ITB.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View more ...</button>
-                </div>
-                <small class="text-muted">2017-2018</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-              <title>Placeholder</title>
-              <img src="Images/Dagozilla/Render Desain Robot/2017/10.PNG" width="100%" height="100%" fill="#aaa"/>
-            <div class="card-body">
-              <p class="card-text">1st generation Mobile Soccer Robots of DAGOZILLA ITB</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View more ...</button>
-                </div>
-                <small class="text-muted">2016-2017</small>
-              </div>
-            </div>
-          </div>
-        </div>        
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-              <title>Placeholder</title>
-              <img src="Images/Dagozilla/Render Desain Robot/2019-Telepresence/p3mi1.png" width="100%" height="100%" fill="#aaa"/>
-            <div class="card-body">
-              <p class="card-text">Telepresence robot project for conferences.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View more ...</button>
-                </div>
-                <small class="text-muted">2018-2019</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-              <title>Placeholder</title>
-              <img src="Images/Perancangan/1.png" width="100%" height="100%" fill="#aaa"/>
-            <div class="card-body">
-              <p class="card-text">Ball-and-plate PID Control Simulator.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View more ...</button>
-                </div>
-                <small class="text-muted">2018</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-              <title>Placeholder</title>
-              <img src="Images/Perancangan Meka/1.jpg" width="100%" height="100%" fill="#aaa"/>
-            <div class="card-body">
-              <p class="card-text">Solenoid engine prototype.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View more ...</button>
-                </div>
-                <small class="text-muted">2018</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-              <title>Placeholder</title>
-              <img src="Images/Robomarine/7.png" width="100%" height="100%" fill="#aaa"/>
-            <div class="card-body">
-              <p class="card-text">AUV alternative design with lower drag force.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View more ...</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-              <title>Placeholder</title>
-              <img src="Images/HASTA/2 (2).png" width="100%" height="100%" fill="#aaa"/>
-            <div class="card-body">
-              <p class="card-text">Hand Sign Translating Apparatus (HASTA).</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View more ...</button>
-                </div>
-                <small class="text-muted">2018</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-              <title>Placeholder</title>
-              <img src="Images/Earthquake Meas Device/Picture1.jpg" width="100%" height="100%" fill="#aaa"/>
-            <div class="card-body">
-              <p class="card-text">Earthquake measurement device using MPU6050 sensor.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View more ...</button>
-                </div>
-                <small class="text-muted">2018</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-              <title>Placeholder</title>
-              <img src="Images/GAMEDEV/62505.jpg" width="100%" height="100%" fill="#aaa"/>
-            <div class="card-body">
-              <p class="card-text">The Revealers, An Android based strategy game.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View more ...</button>
-                </div>
-                <small class="text-muted">2018</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-              <title>Placeholder</title>
-              <img src="Images/GAMEDEV/Screenshot_2018-02-17-20-54-36.png" width="100%" height="100%" fill="#aaa"/>
-            <div class="card-body">
-              <p class="card-text">AEGIS, The first person shooter PC game using Unity3D.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View more ...</button>
-                </div>
-                <small class="text-muted">2017</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-              <title>Placeholder</title>
-              <img src="Images/Erebot/1.png" width="100%" height="100%" fill="#aaa"/>
-            <div class="card-body">
-              <p class="card-text">Erebot, Survaillance Robot for Security purposes.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View more ...</button>
-                </div>
-                <small class="text-muted">2017</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-              <title>Placeholder</title>
-              <img src="Images/GreenBot/1.png" width="100%" height="100%" fill="#aaa"/>
-            <div class="card-body">
-              <p class="card-text">GreenBot, Pesticide Robot for Agricultural Farming</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View more ...</button>
-                </div>
-                <small class="text-muted">2018</small>
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- DYNAMIC BOTTOM CONTENT -->
+      <div class="bottom-content" id="bottomContent">
+        <p>Select a section above to see content here.</p>
       </div>
     </div>
-  </div>
 
-</main>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const savedSection =
+          localStorage.getItem("selectedSection") || "projects"; // fallback
+        showContent(savedSection);
+      });
 
-<footer class="text-muted">
-  <div class="container">
-    <p class="float-right">
-      <a href="#">Back to top</a>
-    </p>
-   </div>
-</footer>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.js"></script></body>
+      function showContent(section) {
+        fetch(`subpages/${section}.html`)
+          .then((response) => {
+            if (!response.ok) throw new Error("Page not found");
+            return response.text();
+          })
+          .then((html) => {
+            document.getElementById("bottomContent").innerHTML = html;
+          })
+          .catch((error) => {
+            document.getElementById("bottomContent").innerHTML =
+              "<p>Could not load content.</p>";
+            console.error(error);
+          });
+
+        // Remove 'active' from all tab buttons
+        const tabs = document.querySelectorAll(".tab-btn");
+        tabs.forEach((tab) => tab.classList.remove("active"));
+
+        // Add 'active' to the clicked button
+        const activeBtn = document.getElementById(`tab-${section}`);
+        if (activeBtn) activeBtn.classList.add("active");
+
+        localStorage.setItem("selectedSection", section);
+      }
+    </script>
+
+    <script>
+      function showProjectDetail(projectId) {
+        document.getElementById("projectContainer").classList.add("d-none");
+        document.getElementById(projectId).classList.remove("d-none");
+      }
+
+      function goBack(projectId) {
+        document.getElementById(projectId).classList.add("d-none");
+        document.getElementById("projectContainer").classList.remove("d-none");
+      }
+    </script>
+
+    <script>
+      function load_subsubpages(projectName) {
+        fetch(`subpages/subsubpages/${projectName}.html`)
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById(projectName).innerHTML = html;
+          });
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

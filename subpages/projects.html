@@ -1,0 +1,441 @@
+<h3>Project</h3>
+
+<p>Personal, study, competition, and business projects.</p>
+
+<div id="projectContainer" class="container mt-4">
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <!-- Card 1 -->
+    <div class="col">
+      <a
+        class="card h-100 text-decoration-none text-body"
+        role="button"
+        style="cursor: pointer"
+        onclick="showProjectDetail('projectDetailRobotics'); load_subsubpages('projectRobotics1'); load_subsubpages('projectRobotics2'); load_subsubpages('projectRobotics3'); load_subsubpages('projectRobotics4'); load_subsubpages('projectRobotics5'); load_subsubpages('projectRobotics6'); load_subsubpages('projectRobotics7'); load_subsubpages('projectRobotics8'); load_subsubpages('projectRobotics9'); load_subsubpages('projectRobotics10')"
+      >
+        <img
+          src="Images/Projects/Robot.jpg"
+          class="card-img-top"
+          alt="Robotics"
+        />
+        <div class="card-body">
+          <h5 class="card-title text-center">Robotics</h5>
+          <p class="card-text text-center">
+            Hardware & software development for mobile robots.
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col">
+      <a
+        class="card h-100 text-decoration-none text-body"
+        role="button"
+        style="cursor: pointer"
+        onclick="showProjectDetail('projectDetailVision')"
+      >
+        <img
+          src="Images/Projects/Vision.jpg"
+          class="card-img-top"
+          alt="Computer Vision"
+        />
+        <div class="card-body">
+          <h5 class="card-title text-center">3D Computer Vision</h5>
+          <p class="card-text text-center">
+            Image processing, Deep learning, SLAM & Bundle Adjustment.
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col">
+      <a
+        class="card h-100 text-decoration-none text-body"
+        role="button"
+        style="cursor: pointer"
+        onclick="showProjectDetail('projectDetailRobotics')"
+      >
+        <img
+          src="Images/Projects/cg.png"
+          class="card-img-top"
+          alt="Computer Graphics"
+        />
+        <div class="card-body">
+          <h5 class="card-title text-center">Computer Graphics</h5>
+          <p class="card-text text-center">
+            CPU based path tracer implementation.
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="col">
+      <a
+        class="card h-100 text-decoration-none text-body"
+        role="button"
+        style="cursor: pointer"
+        onclick="showProjectDetail('projectDetailRobotics')"
+      >
+        <img
+          src="Images/Projects/aegis.png"
+          class="card-img-top"
+          alt="Graphics"
+        />
+        <div class="card-body">
+          <h5 class="card-title text-center">Game Development</h5>
+          <p class="card-text text-center">
+            FPS and RPG mobile game development.
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ========================== SPACER ================================== -->
+<!-- ========================== SPACER ================================== -->
+<!-- ========================== SPACER ================================== -->
+<!-- ========================== SPACER ================================== -->
+<!-- ========================== SPACER ================================== -->
+<!-- Project Detail View (initially hidden) -->
+<div id="projectDetailRobotics" class="container mt-4 d-none">
+  <button
+    class="btn btn-secondary mb-3"
+    onclick="goBack('projectDetailRobotics')"
+  >
+    ← Back
+  </button>
+  <h3>Robotics Projects</h3>
+  <p>Details about your robotics projects go here...</p>
+
+  <div class="accordion" id="projectAccordionRobotics">
+    <!-- Robotics1 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingRobotics1">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseRobotics1"
+          aria-expanded="false"
+          aria-controls="collapseRobotics1"
+        >
+          Mobile Soccer Robots v2.1 [Competition]
+        </button>
+      </h2>
+      <div
+        id="collapseRobotics1"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingRobotics1"
+      >
+        <div class="accordion-body">
+          <!-- Robotics content here -->
+          <div id="projectRobotics1"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Robotics2 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingRobotics2">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseRobotics2"
+          aria-expanded="false"
+          aria-controls="collapseRobotics2"
+        >
+          Mobile Soccer Robots v2.0 [Competition]
+        </button>
+      </h2>
+      <div
+        id="collapseRobotics2"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingRobotics2"
+      >
+        <div class="accordion-body">
+          <!-- Robotics content here -->
+          <div id="projectRobotics2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Robotics3 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingRobotics3">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseRobotics3"
+          aria-expanded="false"
+          aria-controls="collapseRobotics3"
+        >
+          Mobile Soccer Robots v1.0 [Competition]
+        </button>
+      </h2>
+      <div
+        id="collapseRobotics3"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingRobotics3"
+      >
+        <div class="accordion-body">
+          <!-- Robotics content here -->
+          <div id="projectRobotics3"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Robotics4 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingRobotics4">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseRobotics4"
+          aria-expanded="false"
+          aria-controls="collapseRobotics4"
+        >
+          Telepresence Robot Project [Business]
+        </button>
+      </h2>
+      <div
+        id="collapseRobotics4"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingRobotics4"
+      >
+        <div class="accordion-body">
+          <!-- Robotics content here -->
+          <div id="projectRobotics4"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Robotics5 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingRobotics5">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseRobotics5"
+          aria-expanded="false"
+          aria-controls="collapseRobotics5"
+        >
+          Ball-and-plate PID Control Simulator [Study]
+        </button>
+      </h2>
+      <div
+        id="collapseRobotics5"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingRobotics5"
+      >
+        <div class="accordion-body">
+          <!-- Robotics content here -->
+          <div id="projectRobotics5"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Robotics6 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingRobotics6">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseRobotics6"
+          aria-expanded="false"
+          aria-controls="collapseRobotics6"
+        >
+          Solenoid Engine Prototype [Study]
+        </button>
+      </h2>
+      <div
+        id="collapseRobotics6"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingRobotics6"
+      >
+        <div class="accordion-body">
+          <!-- Robotics content here -->
+          <div id="projectRobotics6"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Robotics7 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingRobotics7">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseRobotics7"
+          aria-expanded="false"
+          aria-controls="collapseRobotics7"
+        >
+          AUV Redesign [Study]
+        </button>
+      </h2>
+      <div
+        id="collapseRobotics7"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingRobotics7"
+      >
+        <div class="accordion-body">
+          <!-- Robotics content here -->
+          <div id="projectRobotics7"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Robotics8 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingRobotics8">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseRobotics8"
+          aria-expanded="false"
+          aria-controls="collapseRobotics8"
+        >
+          Hand Sign Translating Apparatus (HASTA) [Study, Competition]
+        </button>
+      </h2>
+      <div
+        id="collapseRobotics8"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingRobotics8"
+      >
+        <div class="accordion-body">
+          <!-- Robotics content here -->
+          <div id="projectRobotics8"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Robotics89-->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingRobotics9">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseRobotics9"
+          aria-expanded="false"
+          aria-controls="collapseRobotics9"
+        >
+          Earthquake Measurement Device using MPU6050 sensor [Study]
+        </button>
+      </h2>
+      <div
+        id="collapseRobotics9"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingRobotics9"
+      >
+        <div class="accordion-body">
+          <!-- Robotics content here -->
+          <div id="projectRobotics9"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Robotics8 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingRobotics10">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseRobotics10"
+          aria-expanded="false"
+          aria-controls="collapseRobotics10"
+        >
+          GreenBot, Pesticide Robot for Agricultural Farming [Competition]
+        </button>
+      </h2>
+      <div
+        id="collapseRobotics10"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingRobotics10"
+      >
+        <div class="accordion-body">
+          <!-- Robotics content here -->
+          <div id="projectRobotics10"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="projectDetailVision" class="container mt-4 d-none">
+  <button
+    class="btn btn-secondary mb-3"
+    onclick="goBack('projectDetailVision')"
+  >
+    ← Back
+  </button>
+  <h3>Vision Projects</h3>
+  <p>Details about your computer vision projects go here...</p>
+
+  <div class="accordion" id="projectAccordionVision">
+    <!-- Vision1 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingVision1">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseVision1"
+          aria-expanded="false"
+          aria-controls="collapseVision1"
+        >
+          Vision1
+        </button>
+      </h2>
+      <div
+        id="collapseVision1"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingVision1"
+      >
+        <div class="accordion-body">
+          <!-- Robotics content here -->
+          <p>Project A (Personal)</p>
+          <p>Project B (Study)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vision2 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingVision2">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseVision2"
+          aria-expanded="false"
+          aria-controls="collapseVision2"
+        >
+          Vision2
+        </button>
+      </h2>
+      <div
+        id="collapseVision2"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingVision2"
+      >
+        <div class="accordion-body">
+          <!-- Robotics content here -->
+          <p>Project C (Personal)</p>
+          <p>Project D (Study)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
