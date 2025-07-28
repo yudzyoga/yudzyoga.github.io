@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>[Scene] To You, 100 Years From Now</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <a href="index.html" class="logo">To You, 100 Years From Now</a>
+      </header>
+
+      <!-- Nav -->
+      <nav id="nav">
+        <ul class="links">
+          <li><a href="index.html">Render</a></li>
+          <li class="active"><a href="scene.html">Scene</a></li>
+          <li><a href="feature.html">Features</a></li>
+          <li><a href="challenge.html">Challenges</a></li>
+          <li><a href="resource.html">Resources</a></li>
+        </ul>
+        <ul class="icons">
+          <li>
+            <a
+              href="https://www.linkedin.com/in/yudhistira-yoga-semeru-248834150/"
+              class="icon brands fa-linkedin"
+              ><span class="label"></span
+            ></a>
+          </li>
+          <li>
+            <a href="https://github.com/yudzyoga" class="icon brands fa-github"
+              ><span class="label"></span
+            ></a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main -->
+      <div id="main">
+        <!-- Post -->
+        <section class="post">
+          <!-- <header class="major">
+									<h1>Scene Design</h1>
+								</header> -->
+
+          <h2>Concept</h2>
+          <p>
+            For my submission, I decided to make a non-photorealistic scene that
+            is closer to an animation movie-like scene. The idea is to create a
+            single &quot;portal&quot; that can connect the past and the future.
+            After the topic &quot;Journey to the Unknown&quot; was announced, I
+            had a brilliant concept to make two distinct worlds and illustrate
+            them appropriately by highlighting the sci-fi character in a
+            traditional-like world and also unique variations of the same thing
+            in two different locations (the sci-fi ladder and the stone ladder,
+            in my case). It seamlessly transitions between the two worlds with a
+            little adjustment to perspective.
+          </p>
+          <p>
+            Additionally, I added some fog effects to give it a more
+            &quot;mysterious&quot; feel and make it closely fit the topic. One
+            of my scene&#x27;s distinctive features is the use of particle
+            systems (for the portal and fireflies), which contribute to the
+            image&#x27;s soothing and peaceful vibe. All of the 3D models
+            (except for the character, which is from another personal project of
+            my teammate) are freely available from a variety of websites and are
+            listed on the Resource page.
+          </p>
+
+          <h2>Scene Building</h2>
+          <p>
+            In building this scene, my reference is to use a “thin” portal to
+            save some spatial space and be able to properly show the
+            environment. The idea is to use the
+            <a href="https://www.artstation.com/artwork/ZGXmOR"
+              >“Dr. Strange-like” portal</a
+            >, which saves quite a lot of space and works well to highlight the
+            transition. For the object placements and composition, I used a
+            reference from a blender rendering challenge on
+            <a
+              href="https://youtu.be/8b5k0M8wTBg?list=PLaoW9Gk7x8OMS9SxfBMuoNMv4Kb37WmVU&amp;t=35"
+              >YouTube</a
+            >
+            by Nathanael Zahn.
+          </p>
+          <div class="box alt">
+            <div class="row gtr-50 gtr-uniform">
+              <div class="col-6">
+                <span class="image fit"
+                  ><img src="images/scene/ref1.jpeg" alt=""
+                /></span>
+              </div>
+              <div class="col-6">
+                <span class="image fit"
+                  ><img src="images/scene/ref2.jpeg" alt=""
+                /></span>
+              </div>
+            </div>
+          </div>
+          <p>
+            With these two references, I started building up the entire scene in
+            Blender by looking into freely available and downloadable 3D models
+            and modifying them to match the scene. Most of them have already
+            integrated with their own materials, so the real challenge is to
+            match the material composition (i.e., re-adjust the BSDF, re-map the
+            UV, re-adjust the color, and place it in the best position). Some of
+            the objects are highly detailed, so I also reduced the vertex
+            quality using blender modifier tools.
+          </p>
+          <img src="images/scene/work1.jpeg" class="image main" alt="" />
+          <p>
+            As seen from this second image, upon optimizing the objects, I
+            managed to render only 170k faces, which is a lot less than most of
+            the previous year’s submissions. My scene consists of mostly
+            low-poly objects (some dark areas because of viewing many small
+            objects in the tight area). This also reduced the processing time of
+            my image (if using a simple pathtracing integrator). In addition, to
+            properly spawn some small details (grass, flowers, and fireflies), I
+            use weight paint to only spawn the objects in the area that is being
+            looked at from the camera, ignoring some areas that occlude as many
+            as possible, including the stairs. (It would be weird if some grass
+            and flowers appeared from the stairs.)
+          </p>
+          <img src="images/scene/work2.jpeg" class="image main" alt="" />
+          <p>
+            To make the scene more cartoon-like, our team developed a
+            line-tracer (one of our developed features) to set some thin lines
+            on the surface of each object in the scene, allowing the scene to be
+            more like an animated-style movie. This feature will be further
+            described in the Feature section.
+          </p>
+        </section>
+      </div>
+
+      <!-- Copyright -->
+      <div id="copyright">
+        <ul>
+          <li>&copy; Computer Graphics WS2023/2024</li>
+          <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

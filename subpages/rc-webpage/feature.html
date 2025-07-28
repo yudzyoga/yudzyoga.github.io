@@ -1,0 +1,318 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>[Features] To You, 100 Years From Now</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">To You, 100 Years From Now</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Render</a></li>
+							<li><a href="scene.html">Scene</a></li>
+							<li class="active"><a href="feature.html">Features</a></li>
+							<li><a href="challenge.html">Challenges</a></li>
+							<li><a href="resource.html">Resources</a></li>
+
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/yudhistira-yoga-semeru-248834150/" class="icon brands fa-linkedin"><span class="label"></span></a></li>
+							<li><a href="https://github.com/yudzyoga" class="icon brands fa-github"><span class="label"></span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<!-- Posts -->
+						<section class="posts">
+							<article>
+								<header>
+									<h2>Line Tracer</h2>
+									<p style="font-size:20px;"><b>Implemented by: Lianjia Liu</b><br/>
+									<em style="font-size:18px;">src/integrators/linetracer_modified.cpp, <br/>include/lightwave/instance.hpp</em></p>
+									</p>
+								</header>
+								<p>Line tracer is a feature that generates lines outlining an object to emphasizes the edges and also gives 2D and cartoon-like perspective. This implementation is based on <a href="http://lines.rexwe.st/">Physically-based Feature Line Rendering by Rex West</a> as a modification to our path tracer. </p>
+								<img class="image fit" src="images/feature/line1.jpeg" alt="" id="img_feature_line"/>
+								<ul class="actions special">
+									<li><a id="button_line_on" class="button small primary">On</a></li>
+									<li><a id="button_line_off" class="button small">Off</a></li>
+								</ul>
+							</article>
+
+							<article>
+								<header>
+									<h2>Normal Mapping</h2>
+									<p style="font-size:20px;"><b>Implemented by: Yudhistira Yoga Semeru</b><br/>
+									<em style="font-size:18px;">include/lightwave/instance.hpp, <br/>src/core/instance.cpp</em></p>
+								</header>
+								<p>Normal mapping gives a detailed sense of the surface of an object without adding more vertices, as it defines the surface normal. It also affects how light (NEE) interacts with a surface to return colors to the camera.</p>
+								<img class="image fit" src="images/feature/normal1.jpeg" alt="" id="img_feature_normal"/>
+								<ul class="actions special">
+									<li><a id="button_normal_on" class="button small primary">On</a></li>
+									<li><a id="button_normal_off" class="button small">Off</a></li>
+								</ul>
+							</article>
+														
+							<article>
+								<header>
+									<h2>Alpha Masking</h2>
+									<p style="font-size:20px;"><b>Implemented by: Yudhistira Yoga Semeru</b><br/>
+									<em style="font-size:18px;">include/lightwave/instance.hpp, <br/>src/core/instance.cpp</em></p>
+								</header>
+								<p>Alpha masking is used to mask the leaves of the tree. This way, we just have to use a simple rectangle to model a leaf, which reduces the number of vertices to use.</p>
+								<img class="image fit" src="images/feature/alpha1.jpeg" alt="" id="img_feature_alpha"/>
+								<ul class="actions special">
+									<li><a id="button_alpha_on" class="button small primary">On</a></li>
+									<li><a id="button_alpha_off" class="button small">Off</a></li>
+								</ul>
+							</article>
+
+							<article>
+								<header>
+									<h2>Area Light</h2>
+									<p style="font-size:20px;"><b>Implemented by: Yudhistira Yoga Semeru</b><br/>
+									<em style="font-size:18px;">src/lights/area.cpp, <br/>src/shapes/sphere.cpp</em></p>
+								</header>
+								<p>Area light sources emit light from the surface of a primitive (rectangle or sphere) instead of a point (like in point or directional light) and therefore produce a smoother shadow.</p>
+								<img class="image fit" src="images/feature/area1.jpeg" alt="" id="img_feature_area"/>
+								<ul class="actions special">
+									<li><a id="button_area_on" class="button small primary">On</a></li>
+									<li><a id="button_area_off" class="button small">Off</a></li>
+								</ul>
+							</article>
+							
+							<article>
+								<header>
+									<h2>Thinlens</h2>
+									<p style="font-size:20px;"><b>Implemented by: Yudhistira Yoga Semeru</b><br/>
+									<em style="font-size:18px;">src/cameras/thinlens.cpp</em></p>
+								</header>
+								<p>The Thinlens feature simulates the use of an aperture in our camera. It makes the object in the focal distance appear in detail and blurs other objects placed at some distance.</p>
+								<img class="image fit" src="images/feature/thinlens1.jpeg" alt=""  id="img_feature_thinlens"/>
+								<ul class="actions special">
+									<li><a id="button_thinlens_on" class="button small primary">On</a></li>
+									<li><a id="button_thinlens_off" class="button small">Off</a></li>
+								</ul>
+							</article>
+							
+							<article>
+								<header>
+									<h2>Bloom Effect</h2>
+									<p style="font-size:20px;"><b>Implemented by: Yudhistira Yoga Semeru</b><br/>
+									<em style="font-size:18px;">src/postprocess/bloom.cpp</em></p>
+								</header>
+								<p>Bloom used to give a sense of “bright light” to objects. It combines the original image and the masked convolutions of a certain threshold to give a more spreading effect of a bright light.</p>
+								<img class="image fit" src="images/feature/bloom1.jpeg" alt=""  id="img_feature_bloom"/>
+								<ul class="actions special">
+									<li><a id="button_bloom_on" class="button small primary">On</a></li>
+									<li><a id="button_bloom_off" class="button small">Off</a></li>
+								</ul>
+							</article>
+							
+							<article>
+								<header>
+									<h2>Halton Sampler</h2>
+									<p style="font-size:20px;"><b>Implemented by: Yudhistira Yoga Semeru</b><br/>
+									<em style="font-size:18px;">src/samplers/halton.cpp</em></p>
+								</header>
+								<p>The halton sampler is used for randomizing the exact position in sampling the color of a pixel. Instead of sampling randomly (as in an independent sampler), it seeds the sampler to be unique for each pixel position on the screen. It results in better-distributed and consistent sample points and sometimes produces better colors compared to a simple independent sampler.</p>
+								<img class="image fit" src="images/feature/halton1.jpeg" alt=""  id="img_feature_halton"/>
+								<ul class="actions special">
+									<li><a id="button_halton_on" class="button small primary">On</a></li>
+									<li><a id="button_halton_off" class="button small">Off</a></li>
+								</ul>
+							</article>
+
+							<article>
+								<header>
+									<h2>Image Denoising</h2>
+									<p style="font-size:20px;"><b>Implemented by: Yudhistira Yoga Semeru</b><br/>
+										<em style="font-size:18px;">src/postprocess/denoising.cpp</em><br/>
+										<em style="font-size:18px;">include/lightwave/bsdf.hpp</em></p>
+								</header>
+								<p>This implementation is based on the Intel OpenImageDenoising (OIDN) toolkit. By taking the color, normal, and albedo of image data, OIDN is able to filter image noises for each data point and produce a smooth and detailed result.</p>
+								<img class="image fit" src="images/feature/denoising1.jpeg" alt=""  id="img_feature_denoising"/>
+								<ul class="actions special">
+									<li><a id="button_denoising_on" class="button small primary">On</a></li>
+									<li><a id="button_denoising_off" class="button small">Off</a></li>
+								</ul>
+							</article>
+
+							<article>
+								<header>
+									<h2>(Additional) Fog Effect</h2>
+									<p style="font-size:20px;"><b>Implemented by: Yudhistira Yoga Semeru</b><br/>
+									<em style="font-size:18px;">src/integrators/linetracer_modified.cpp</em></p>
+								</header>
+								<p>This effect is a simple “trick” that comes to mind, as I required a fog effect to change the mood of the scene. Basically, take the distance at the first intersection and divide it by the maximum distance to get a ratio threshold for the sampling option between object color and fog color. This will be further elaborated in the “Challenge” section.</p>
+								<img class="image fit" src="images/feature/fog1.jpeg" alt=""  id="img_feature_fog"/>
+								<ul class="actions special">
+									<li><a id="button_fog_on" class="button small primary">On</a></li>
+									<li><a id="button_fog_off" class="button small">Off</a></li>
+								</ul>
+							</article>
+
+						</section>
+					</div>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Computer Graphics WS2023/2024</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script>
+				const img_line = document.getElementById("img_feature_line"); 
+				const b_line_1 = document.getElementById("button_line_on");
+				const b_line_0 = document.getElementById("button_line_off");
+				const img_normal = document.getElementById("img_feature_normal"); 
+				const b_normal_1 = document.getElementById("button_normal_on");
+				const b_normal_0 = document.getElementById("button_normal_off");
+				const img_alpha = document.getElementById("img_feature_alpha"); 
+				const b_alpha_1 = document.getElementById("button_alpha_on");
+				const b_alpha_0 = document.getElementById("button_alpha_off");
+				const img_area = document.getElementById("img_feature_area"); 
+				const b_area_1 = document.getElementById("button_area_on");
+				const b_area_0 = document.getElementById("button_area_off");
+				const img_thinlens = document.getElementById("img_feature_thinlens");
+				const b_thinlens_1 = document.getElementById("button_thinlens_on");
+				const b_thinlens_0 = document.getElementById("button_thinlens_off");
+				const img_bloom = document.getElementById("img_feature_bloom") 
+				const b_bloom_1 = document.getElementById("button_bloom_on");
+				const b_bloom_0 = document.getElementById("button_bloom_off");
+				const img_halton = document.getElementById("img_feature_halton") 
+				const b_halton_1 = document.getElementById("button_halton_on");
+				const b_halton_0 = document.getElementById("button_halton_off");
+				const img_denoising = document.getElementById("img_feature_denoising") 
+				const b_denoising_1 = document.getElementById("button_denoising_on");
+				const b_denoising_0 = document.getElementById("button_denoising_off");
+				const img_fog = document.getElementById("img_feature_fog") 
+				const b_fog_1 = document.getElementById("button_fog_on");
+				const b_fog_0 = document.getElementById("button_fog_off");
+				b_line_1.addEventListener("click", function(){
+					img_line.src = "images/feature/line1.jpeg";
+					b_line_1.classList.add('primary');
+					b_line_0.classList.remove("primary");
+
+				})
+				b_line_0.addEventListener("click", function(){
+					img_line.src = "images/feature/line2.jpeg";
+					b_line_0.classList.add("primary");
+					b_line_1.classList.remove('primary');
+				})
+				b_normal_1.addEventListener("click", function(){
+					img_normal.src = "images/feature/normal1.jpeg";
+					b_normal_1.classList.add('primary');
+					b_normal_0.classList.remove("primary");
+
+				})
+				b_normal_0.addEventListener("click", function(){
+					img_normal.src = "images/feature/normal2.jpeg";
+					b_normal_0.classList.add("primary");
+					b_normal_1.classList.remove('primary');
+				})
+				b_alpha_1.addEventListener("click", function(){
+					img_alpha.src = "images/feature/alpha1.jpeg";
+					b_alpha_1.classList.add('primary');
+					b_alpha_0.classList.remove("primary");
+
+				})
+				b_alpha_0.addEventListener("click", function(){
+					img_alpha.src = "images/feature/alpha2.jpeg";
+					b_alpha_0.classList.add("primary");
+					b_alpha_1.classList.remove('primary');
+				})
+				b_area_1.addEventListener("click", function(){
+					img_area.src = "images/feature/area1.jpeg";
+					b_area_1.classList.add('primary');
+					b_area_0.classList.remove("primary");
+				})
+				b_area_0.addEventListener("click", function(){
+					img_area.src = "images/feature/area2.jpeg";
+					b_area_0.classList.add("primary");
+					b_area_1.classList.remove('primary');
+				})
+				b_thinlens_1.addEventListener("click", function(){
+					img_thinlens.src = "images/feature/thinlens1.jpeg";
+					b_thinlens_1.classList.add('primary');
+					b_thinlens_0.classList.remove("primary");
+				})
+				b_thinlens_0.addEventListener("click", function(){
+					img_thinlens.src = "images/feature/thinlens2.jpeg";
+					b_thinlens_0.classList.add("primary");
+					b_thinlens_1.classList.remove('primary');
+				})
+				b_bloom_1.addEventListener("click", function(){
+					img_bloom.src = "images/feature/bloom1.jpeg";
+					b_bloom_1.classList.add('primary');
+					b_bloom_0.classList.remove("primary");
+				})
+				b_bloom_0.addEventListener("click", function(){
+					img_bloom.src = "images/feature/bloom2.jpeg";
+					b_bloom_0.classList.add("primary");
+					b_bloom_1.classList.remove('primary');
+				})
+
+				b_halton_1.addEventListener("click", function(){
+					img_halton.src = "images/feature/halton1.jpeg";
+					b_halton_1.classList.add('primary');
+					b_halton_0.classList.remove("primary");
+				})
+				b_halton_0.addEventListener("click", function(){
+					img_halton.src = "images/feature/halton2.jpeg";
+					b_halton_0.classList.add("primary");
+					b_halton_1.classList.remove('primary');
+				})
+
+				b_denoising_1.addEventListener("click", function(){
+					img_denoising.src = "images/feature/denoising1.jpeg";
+					b_denoising_1.classList.add('primary');
+					b_denoising_0.classList.remove("primary");
+				})
+				b_denoising_0.addEventListener("click", function(){
+					img_denoising.src = "images/feature/denoising2.jpeg";
+					b_denoising_0.classList.add("primary");
+					b_denoising_1.classList.remove('primary');
+				})
+				b_fog_1.addEventListener("click", function(){
+					img_fog.src = "images/feature/fog1.jpeg";
+					b_fog_1.classList.add('primary');
+					b_fog_0.classList.remove("primary");
+				})
+				b_fog_0.addEventListener("click", function(){
+					img_fog.src = "images/feature/fog2.jpeg";
+					b_fog_0.classList.add("primary");
+					b_fog_1.classList.remove('primary');
+				})
+
+
+</script>
+	</body>
+</html>

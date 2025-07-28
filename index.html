@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
+    <title>Your Freestyle Engineer Neighbor</title>
+    <link rel="icon" type="image/png" href="/icon.png" />
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -159,7 +161,12 @@
             you have any questions!
           </p>
 
-          <a href="your-cv.pdf" class="btn btn-info" download>Resume</a>
+          <a
+            href="documents/cv_ec0e2603172c73a8b644bb9456c1ff6e.pdf"
+            class="btn btn-info"
+            download
+            >Resume</a
+          >
         </div>
       </div>
 
@@ -173,11 +180,11 @@
           Projects
         </button>
         <button
-          id="tab-research"
+          id="tab-achievements"
           class="btn btn-outline-secondary m-2 tab-btn"
-          onclick="showContent('research')"
+          onclick="showContent('achievements')"
         >
-          Research
+          Achievements
         </button>
         <button
           id="tab-publications"
@@ -187,12 +194,19 @@
           Publications
         </button>
         <button
+          id="tab-skills"
+          class="btn btn-outline-secondary m-2 tab-btn"
+          onclick="showContent('skills')"
+        >
+          Skills
+        </button>
+        <!-- <button
           id="tab-contact"
           class="btn btn-outline-secondary m-2 tab-btn"
           onclick="showContent('contact')"
         >
           Contact
-        </button>
+        </button> -->
       </div>
 
       <!-- DYNAMIC BOTTOM CONTENT -->
@@ -270,6 +284,53 @@
       gtag("js", new Date());
 
       gtag("config", "G-FMZ2KPGM17");
+    </script>
+    <script>
+      const tooltipTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      );
+      tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+    </script>
+
+    <script>
+      function openProjectAccordion(
+        category = "Robotics",
+        accordionId = "collapseRobotics1"
+      ) {
+        // 1. Click "Projects" tab
+        document.getElementById("tab-projects").click();
+
+        // 2. Use a short delay to ensure Projects tab has rendered
+        setTimeout(() => {
+          // 3. Click the card matching the category to open the subpage
+          const projectDetailId = "projectDetail" + category;
+          const selector = `.card[onclick*="showProjectDetail('${projectDetailId}')"]`;
+
+          const projectCard = document.querySelector(selector);
+          if (projectCard) projectCard.click();
+
+          // 4. Delay again to wait for detail section + accordions to render
+          setTimeout(() => {
+            // 5. Expand the specific accordion
+            const targetAccordion = document.getElementById(accordionId);
+            if (
+              targetAccordion &&
+              !targetAccordion.classList.contains("show")
+            ) {
+              const button =
+                targetAccordion.previousElementSibling?.querySelector(
+                  `button[data-bs-target="#${accordionId}"]`
+                );
+              if (button) button.click();
+            }
+
+            // 6. Scroll to the accordion
+            targetAccordion?.scrollIntoView({ behavior: "smooth" });
+          }, 500);
+        }, 300);
+      }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
