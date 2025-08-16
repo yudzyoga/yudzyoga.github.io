@@ -54,7 +54,7 @@
         class="card h-100 text-decoration-none text-body"
         role="button"
         style="cursor: pointer"
-        onclick="showProjectDetail('projectDetailGraphics'); load_subsubpages('projectGraphics1')"
+        onclick="showProjectDetail('projectDetailGraphics'); load_subsubpages('projectGraphics1'); load_subsubpages('projectGraphics2'); load_subsubpages('projectGraphics3')"
       >
         <img
           src="Images/Projects/cg.jpeg"
@@ -64,7 +64,7 @@
         <div class="card-body">
           <h5 class="card-title text-center">Computer Graphics</h5>
           <p class="card-text text-center">
-            CPU based path tracer implementation.
+            Path tracer implementation and GPU Programming.
           </p>
         </div>
       </a>
@@ -527,7 +527,6 @@
   <h3>Graphics Projects</h3>
 
   <div class="accordion" id="projectAccordionGraphics">
-    <!-- Vision1 -->
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingGraphics1">
         <button
@@ -538,7 +537,7 @@
           aria-expanded="false"
           aria-controls="collapseGraphics1"
         >
-          Charlotte Renderer
+          Charlotte Renderer [Study]
         </button>
       </h2>
       <div
@@ -552,6 +551,54 @@
         </div>
       </div>
     </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingGraphics2">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseGraphics2"
+          aria-expanded="false"
+          aria-controls="collapseGraphics2"
+        >
+          Hybrid Neural Path Tracer [Study, Thesis]
+        </button>
+      </h2>
+      <div
+        id="collapseGraphics2"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingGraphics2"
+      >
+        <div class="accordion-body">
+          <div id="projectGraphics2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingGraphics3">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseGraphics3"
+          aria-expanded="false"
+          aria-controls="collapseGraphics3"
+        >
+          OpenGL Path Tracer (Ongoing) [Personal]
+        </button>
+      </h2>
+      <div
+        id="collapseGraphics3"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingGraphics3"
+      >
+        <div class="accordion-body">
+          <div id="projectGraphics3"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -562,7 +609,6 @@
   <h3>Game Development Projects</h3>
 
   <div class="accordion" id="projectAccordionGame">
-    <!-- GameDev1 -->
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingGame1">
         <button
@@ -582,13 +628,11 @@
         aria-labelledby="headingGame1"
       >
         <div class="accordion-body">
-          <!-- Robotics content here -->
           <div id="projectGame1"></div>
         </div>
       </div>
     </div>
 
-    <!-- GameDev2 -->
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingGame2">
         <button
@@ -608,7 +652,6 @@
         aria-labelledby="headingGame2"
       >
         <div class="accordion-body">
-          <!-- Robotics content here -->
           <div id="projectGame2"></div>
         </div>
       </div>

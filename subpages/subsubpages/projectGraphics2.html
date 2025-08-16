@@ -1,0 +1,98 @@
+<div class="container mt-4">
+  <div class="row">
+    <!-- Left Column: Image (1/4 width) -->
+    <div class="col-md-8">
+      <img src="Images/Projects/Graphics2/result.jpg" class="img-fluid" />
+      <figcaption class="text-center mt-0 fst-italic">
+        Rendering result
+      </figcaption>
+    </div>
+    <div class="col-md-4">
+      <h6>Description:</h6>
+      <p>
+        A hybrid neural path tracer combining GPU acceleration (CUDA) with neural network 
+        inference and hardware acceleration (OptiX) for improved rendering performance 
+        and quality. This project is currently under research and development, and the 
+        source code will be shared after publication.
+      </p>
+
+      <!-- <br /> -->
+      <h6>Responsibilities:</h6>
+      <ul>
+        <li>
+          Implemented both homogeneous and heterogeneous volume feature using NanoVDB 
+          library support for sparse volume data.
+        </li>
+        <li>
+          Implemented MIS support for surface, volume, and environment map sampling for 
+          both local and global light sources.
+        </li>
+        <li>
+          Implemented thread compaction for optimizing thread activation.
+        </li>
+        <li>
+          Implemented neural inference support for thesis research.
+        </li>
+        <li>
+          Implemented hardware-accelerated path tracing support using NVIDIA OptiX. 
+        </li>
+        <li>
+          Conducted master thesis to optimize heterogeneous volume rendering pipeline 
+          for performance improvements.
+        </li>
+      </ul>
+
+    </div>
+  </div>
+  </br>
+  <div class="row">
+    <div class="col-md-6">
+      <h6>Implemented Features</h6>
+
+      <ul>
+        <li>
+          Homogeneous and Heterogeneous Volumes
+        </li>
+        <p>The implementation utilizes delta tracking approach for unbiased volume rendering result.</p>
+        <img src="Images/Projects/Graphics2/fig_volfurnace.jpg" class="img-fluid" />
+        </br>
+        </br>
+        <li>
+          Multiple Importance Sampling (MIS)
+        </li>
+        <p>MIS helps adapting the lighting scenario for both local and distant lighting components.</p>
+        <img src="Images/Projects/Graphics2/fig_media.jpg" class="img-fluid" />
+        </br>
+        </br>
+  
+        <li>
+          Stream Splitting and compaction
+        </li>
+        <p>Stream separation between surface and volume buffer to collect and maintain ease 
+          of access to specific ray buffers for further implementation on neural approach.</p>
+        <img src="Images/Projects/Graphics2/fig_scheme_separated_compaction.jpg" class="img-fluid" />
+
+
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <h6>Final Rendering Result</h6>
+      <div class="ratio ratio-1x1">
+        <iframe
+          src="https://www.youtube.com/embed/vNDbim4j-Io"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <figcaption class="text-center mt-0 fst-italic">
+        Rendering performance result
+      </figcaption>
+
+      </br>
+      <h6>References</h6>
+      <p>This path tracer builds on the top of prior research by Philippe Weier on <a href="https://weiphil.github.io/portfolio/neural_bvh" target="_blank"
+          >nbvh</a
+        >. Extended to support neural inference for heterogeneous volumes application.</p>
+    </div>
+
+  </div>
+</div>
