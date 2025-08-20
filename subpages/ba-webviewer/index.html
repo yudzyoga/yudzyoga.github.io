@@ -60,7 +60,15 @@
       // load camera
       let data;
       const scaleFactor = 3; // choose any number to enlarge positions
-      const cam_offset = new THREE.Vector3(1, 0, -3.5);
+      const cam_offset = new THREE.Vector3(0, 0.5, -3.5);
+      const scaleX = 0.5; // scale down X positions
+
+      const mirrorMatrix = new THREE.Matrix4().set(
+            -1, 0, 0, 0,   // flip X
+            0, 1, 0, 0,   // keep Y
+            0, 0, 1, 0,   // keep Z
+            0, 0, 0, 1
+        );
 
       fetch('estimated_camera_parameters.json')   // path to your JSON file
           .then(response => response.json())
@@ -78,7 +86,9 @@
                       flat[12], flat[13], flat[14], flat[15] // fourth column (translation)
                   );
 
-                  const cam = new THREE.PerspectiveCamera(60, 1, 0.01, 1);
+                  m.premultiply(mirrorMatrix);
+
+                  const cam = new THREE.PerspectiveCamera(60, 1, 0.01, 0.8);
                   cam.matrix.copy(m);
                   cam.matrix.decompose(cam.position, cam.quaternion, cam.scale); // ensure position/rotation is set
                   cam.rotateY(Math.PI);
@@ -86,6 +96,8 @@
                   cam.position.add(cam_offset);
 
                   cam.position.multiplyScalar(scaleFactor);
+
+                  cam.position.x *= scaleX;
 
                   cam.updateMatrixWorld(true);  // VERY IMPORTANT
 
