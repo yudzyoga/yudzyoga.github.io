@@ -1,0 +1,85 @@
+import * as THREE from 'https://unpkg.com/three@0.179.0/build/three.module.js';
+import { OrbitControls } from 'https://unpkg.com/three@0.179.0/examples/jsm/controls/OrbitControls.js';
+import { PLYLoader } from 'https://unpkg.com/three@0.179.0/examples/jsm/loaders/PLYLoader.js';
+
+// Scene + Camera + Renderer
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x202020);
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 100);
+camera.position.set(10, 10, -10);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+
+// Load PLY
+const loader = new PLYLoader();
+loader.load('model2.ply', (geometry) => {
+    geometry.computeVertexNormals();
+
+    // give color to ply
+    const material = new THREE.PointsMaterial({
+        size: 0.1,
+        vertexColors: geometry.hasAttribute('color')
+    });
+
+    const points = new THREE.Points(geometry, material);
+    scene.add(points);
+});
+
+// load camera
+let data;
+const scaleFactor = 3; // choose any number to enlarge positions
+const cam_offset = new THREE.Vector3(1, 0, -3.5);
+
+fetch('estimated_camera_parameters.json')   // path to your JSON file
+    .then(response => response.json())
+    .then(json => {
+        data = json;
+        console.log("Loaded extrinsics:", data);
+
+        for (const [name, matArray] of Object.entries(data.extrinsics)) {
+            const flat = matArray.flat();
+            const m = new THREE.Matrix4();
+            m.set(
+                flat[0], flat[1], flat[2], flat[3],   // first column
+                flat[4], flat[5], flat[6], flat[7],   // second column
+                flat[8], flat[9], flat[10], flat[11],  // third column
+                flat[12], flat[13], flat[14], flat[15] // fourth column (translation)
+            );
+
+            const cam = new THREE.PerspectiveCamera(60, 1, 0.01, 1);
+            cam.matrix.copy(m);
+            cam.matrix.decompose(cam.position, cam.quaternion, cam.scale); // ensure position/rotation is set
+            cam.rotateY(Math.PI);
+
+            cam.position.add(cam_offset);
+
+            cam.position.multiplyScalar(scaleFactor);
+
+            cam.updateMatrixWorld(true);  // VERY IMPORTANT
+
+            const helper = new THREE.CameraHelper(cam);
+            helper.material.color.setHex(0xffffff); // optional: random color
+            scene.add(helper);
+        }
+
+    })
+    .catch(err => console.error("Failed to load JSON:", err));
+
+// Handle resize
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// Animation loop
+function animate() {
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
+}
+animate();
