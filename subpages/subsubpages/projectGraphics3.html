@@ -1,22 +1,36 @@
 <div class="container mt-4">
   <div class="row">
-    <!-- Left Column: Image (1/4 width) -->
-
-    <div class="col-md-5">
-      <img src="Images/Projects/Graphics3/image_opengl.jpg" class="img-fluid" />
+    <div class="col-md-6">
+      <img src="Images/Projects/Graphics3/pt_envmap.jpg" class="img-fluid" />
       <figcaption class="text-center mt-0 fst-italic">
-        OpenGL App
+        Path tracer (depth 32, envmap on)
       </figcaption>
     </div>
-
+    <div class="col-md-6">
+      <img src="Images/Projects/Graphics3/pt_no-envmap.jpg" class="img-fluid" />
+      <figcaption class="text-center mt-0 fst-italic">
+        Path tracer (depth 32, envmap off)
+      </figcaption>
+    </div>
+  </div>
+  
+  <div class="row">
     <!-- Right Column: Text (3/4 width) -->
-    <div class="col-md-7">
+    <div class="col-md-8">
       <br />
+      <h6>
+        Repository link:
+        <a href="https://github.com/yudzyoga/pathtracer-opengl" target="_blank"
+          >pathtracer-opengl</a
+        >
+      </h6>
+    </br>
       <h6>Description:</h6>
       <p>
-        My attempt on making a custom path tracer, with a final purpose of making 
-        simple animation movie along with re-learning OpenGL principles from scratch.
+        My attempt on making a custom path tracer using OpenGL library from scratch, while also learning on managing OpenGL API calls.
       </p>
+    </br>
+      <h6>Implemented features:</h6>
       <ul>
         <li>Application</li>
         <li>Vertex and Index Buffer</li>
@@ -24,8 +38,11 @@
         <li>Vertex Shader (GLSL)</li>
         <li>Model-View-Projection</li>
         <li>Fragment Shader (GLSL)</li>
+        <li>Compute Shader (GLSL)</li>
         <li>Texture Sampling</li>
         <li>Screen Output</li>
+        <li>BSDF and emission Sampling</li>
+        <li>Megakernel rendering style</li>
       </ul>
     </div>
   </div>
