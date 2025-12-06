@@ -1,0 +1,69 @@
+<div class="container mt-4">
+  <div class="row">
+    <!-- Left Column: Image (1/4 width) -->
+    <div class="col-md-6">
+      <img src="Images/Projects/Vision6/description.jpg" class="img-fluid" />
+      <figcaption class="text-center mt-0 fst-italic">
+        Short illustration
+      </figcaption>
+
+    </br>
+        <img src="Images/Projects/Vision6/schema.jpg" class="img-fluid" />
+        <figcaption class="text-center mt-0 fst-italic">
+          Data schema
+        </figcaption>
+    </div>
+
+    <!-- Right Column: Text (3/4 width) -->
+    <div class="col-md-6">
+      <h6>
+        Project page:
+        <a href="https://github.com/yudzyoga/chat-pdfcompress" target="_blank"
+          >[GitHub] Chat-PDFCompress</a
+        >
+      </h6>
+
+      <br />
+      <h6>Short Description:</h6>
+      <p>
+        A Google-ADK (Agent Development Kit) chatbot to help reducing pdf file sizes by compressing images inside. 
+      </p>
+
+      <br />
+      <h6>Description:</h6>
+      <p>
+        This project was built to solve a common problem I often run into. During my time in my master study, I always needed smaller and compressed PDFs for academic papers printing. The chatbot interface makes it easy to generate optimized files that load faster in printers without sacrificing too much quality. Most of the academic research papers use descriptive images in PNG format (lossless compression), which is a bit too heavy on the memory consumption, especially in lightweight use cases like printing.
+      </p>
+    
+      <p>
+        This project is a lightweight, containerized PDF compression service built with FastAPI, PyMuPDF, asyncio, and Google ADK (Agent Development Kit) tools. Users can submit a PDF URL through a simple web interface, where a backend agent interprets user instructions (image formats, compression level, resize ratio, and grayscale conversion) and sends a job to an asynchronous worker. The worker downloads the file with live progress updates, processes and compresses images inside the PDF, and generates a downloadable optimized version. Progress is streamed back to the frontend in real time using WebSockets, giving users a dynamic and responsive experience.
+      </p>
+    
+      <p>
+        The system runs fully in Docker, with a shared volume between the worker and client for temporary file storage for simplicity (extendable using blob storage). The frontend is served directly from FastAPI with Bootstrap5, featuring a chat-style interaction model, job cards, downloadable results, and live status updates. This architecture keeps the service modular, scalable, and easy to deploy to either locally or on cloud platforms supporting Docker.  
+      </p>
+    </div>
+  </div>
+
+  <!-- <hr class="my-4" /> -->
+  <br />
+  <!-- <h6>Dataset and result</h6> -->
+
+  <div class="row mt-2">
+    <div class="col-md-2">
+    </div>
+          
+      <div class="ratio ratio-16x9">
+        <iframe
+          src="https://www.youtube.com/embed/krccLrRhSno "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <figcaption class="text-center mt-0 fst-italic">
+        Short demo
+      </figcaption>
+
+    <div class="col-md-2">
+    </div>
+  </div>
+</div>
