@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Gaussian Splatting for Autonomous Driving Simulation</title>
+  <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/icon.png" />
+  <style>
+    body {
+      background-color: #0b0f19; /* Sleek deep-tech dark background */
+      color: #f3f4f6;
+    }
+    /* Custom style to make Bootstrap Accordion blend into our premium dark mode */
+    .accordion-item {
+      background-color: #111827 !important;
+      border-color: #1f2937 !important;
+    }
+    .accordion-button {
+      background-color: #111827 !important;
+      color: #f3f4f6 !important;
+    }
+    .accordion-button:not(.collapsed) {
+      background-color: #1f2937 !important;
+      color: #3b82f6 !important; /* Premium electric blue highlight */
+    }
+    .accordion-button::after {
+      filter: invert(1); /* Makes the arrow icon visible on dark background */
+    }
+  </style>
+
+    <!-- Google tag (gtag.js) -->
+  <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=???"
+    ></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "???");
+    </script>
+</head>
+<body>
+
+  <!-- 1. TOP INTRODUCTION PANEL (HERO) -->
+  <header class="py-5 border-bottom border-secondary border-opacity-10" style="background: radial-gradient(circle at top, #1e293b 0%, #0b0f19 70%);">
+    <div class="container py-4 text-center">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-9">
+          
+          <!-- Project Sub-badge -->
+          <!-- <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 px-3 py-2 rounded-pill mb-3 uppercase tracking-wider">
+            OPEN SOURCE
+          </span> -->
+          
+          <!-- Project Title -->
+          <h1 class="display-5 fw-bold mb-3 text-white">
+            3D Gaussian Splatting for Lightweight Autonomous Driving Simulation
+          </h1>
+          
+          <!-- Author Info -->
+          <div class="mb-4">
+            <h3 class="text-white mb-1 fw-semibold">Yudhistira Yoga Semeru</h3>
+            <h5 class="text-warning fw-medium">Robotics 3D Perception & GPU Rendering Developer</h5>
+          </div>
+
+          <!-- Quick Introduction Paragraph -->
+          <p class="lead text-secondary mb-4 fs-5 lh-base mx-auto" style="max-width: 800px;">
+            A high-performance 3D Gaussian splatting framework for lightweight, high-performance, and photorealistic autonomous driving simulation. This project aims to use state-of-the-art approaches to enable hobbyists and roboticists to experiment with complex and photorealistic simulations on accessible consumer hardware.
+          </p>
+          
+          <!-- Social & Repo Links -->
+          <div class="d-flex justify-content-center gap-3">
+            <!-- <a href="https://github.com/yudzyoga" target="_blank" class="btn btn-outline-light px-4 py-2 fw-semibold disabled">
+              <i class="bi bi-github me-2"></i> Project Repository (Soon)
+            </a> -->
+            <a href="https://www.linkedin.com/in/yudzyoga/" target="_blank" class="btn btn-outline-primary px-4 py-2 fw-semibold">
+              <i class="bi bi-linkedin me-2"></i> LinkedIn
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. MIDDLE VIDEO SHOWCASE SECTION -->
+  <main class="container py-5">
+    <div class="row g-4 justify-content-center">
+      
+      <!-- Left Video: Project Overview -->
+      <div class="col-12 col-md-6 lg-5">
+        <div class="card h-100 bg-transparent border-0">
+          <!-- Responsive 16:9 Aspect Ratio Container -->
+          <div class="ratio ratio-16x9 rounded-4 shadow overflow-hidden border border-secondary border-opacity-20 bg-dark">
+            <iframe src="https://www.youtube.com/embed/gQlWGThLY_0?cc_load_policy=1&cc_lang_pref=id" title="Reconstruction Demo" allowfullscreen></iframe>
+          </div>
+          <div class="card-body px-1 pt-3">
+            <h3 class="h5 text-white mb-1">Project Overview</h3>
+            <p class="text-secondary small">Showcase of all the features inside the simulator.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Video: Short Demo -->
+      <div class="col-12 col-md-6 lg-5">
+        <div class="card h-100 bg-transparent border-0">
+          <!-- Responsive 16:9 Aspect Ratio Container -->
+          <div class="ratio ratio-16x9 rounded-4 shadow overflow-hidden border border-secondary border-opacity-20 bg-dark">
+            <iframe src="https://www.youtube.com/embed/h-I1PVjiC9U" title="Reconstruction Demo" allowfullscreen></iframe>
+          </div>
+          <div class="card-body px-1 pt-3">
+            <h3 class="h5 text-white mb-1">Short Demo</h3>
+            <p class="text-secondary small">A short running sequence of the simulator, visualized using Rerun.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 3. BOTTOM DEEP-DIVE SECTION (HIDDEN UNTIL CLICKED) -->
+    <div class="row justify-content-center mt-3 pt-3">
+      <div class="col-12 col-lg-12">
+        
+        <h3 class="text-center mb-4 fw-semibold text-secondary small text-uppercase tracking-widest">Technical Documentations</h3>
+        
+        <!-- Bootstrap Accordion Container -->
+        <div class="accordion shadow" id="technicalDeepDive">
+          
+          <!-- Dropdown Option 1 -->
+          <div class="accordion-item text-light">
+            <h2 class="accordion-header">
+              <button class="accordion-button shown fw-bold fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                🕮 Chapter 1: Introduction & Challenges
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse show  ">
+              <div class="accordion-body lh-base">
+                <div class="row align-items-center g-4">
+                  
+                  <div class="col-12 col-md-8">
+                    <h4 class="text-white mb-3">The Challenge in Robotics Simulation</h4>                    
+                    <p>
+                      Building a complex robotics system is highly challenging. Aside from requiring an interdisciplinary technical implementation, developers face numerous pitfalls throughout the design, production, and testing phases. Generally, validation is performed in two ways. It may be physical testing on an expensive, custom hardware rig or deployment within a sandbox simulation environment. The most widely adopted sandbox for robotics is Gazebo as shown in Figure 1, which provides core physics and control functionalities to test autonomous algorithms. Among these, simulating a color camera sensor is critical for vision-based recognition and navigation. However, generating high-performance photorealistic camera renders at a low computational cost remains a massive bottleneck. 
+                    </p>
+                    <p>
+                      As a simple analogy, expecting a traditional simulator to produce cinema-grade photorealism in real-time creates a computational challenge due to running a movie-industry path tracer at 60 frames per second (FPS), which is nearly impossible for any consumer-grade hardware. Currently, standard simulation relies on simplified mesh-based rasterization, which struggles to replicate real-world environments accurately without inducing a massive rendering overhead that throttles real-time loop execution.
+                    </p>
+                  </div>
+
+                  <div class="col-12 col-md-4 text-center">
+                    <img src="images/image.jpg" 
+                        class="img-fluid rounded-3 shadow border border-secondary border-opacity-20" 
+                        alt="Simulation graphic" 
+                        style=" object-fit: cover;">
+                    <figcaption class="form-text text-secondary small px-2">
+                        Figure 1: Sample simulation in Gazebo.
+                      </figcaption>
+                  </div>
+
+                </div> </div>
+
+              <div class="accordion-body lh-base">
+                <h4>Paradigm Shift: Neural Radiance Fields (NeRF) and 3D Gaussian Splatting (3DGS)</h4>                    
+                <p>
+                  In 2022, NeRFs (Neural Radiance Fields (NeRF) were first introduced high-fidelity, photorealistic scene reconstruction and view-dependent imaging by implicitly optimizing how light interacts within a real-world environment. While this marked a massive milestone of research in 3D reconstruction, the paradigm shifted entirely in 2023 with the introduction of rasterization-based 3D Gaussian Splatting (3DGS). It was presented by one of the co-authors during my master's at Saarland University, and I suddenly realized possibilities of implementation beyond what traditional use cases for 3D reconstruction can bring. It can be used for high-performance rendering with low computational cost, thus advancing the developments of real-time vision-based applications that require photorealistic perception simulation.                
+                </p>
+              </div>
+
+              <div class="accordion-body lh-base">
+                <h4>Project Objective</h4>                    
+                <p>
+                  With all the challenges in robotics and advancements in 3D reconstruction research, I started to look into making a “fun-yet-useful” project that presents a proof-of-concept (PoC) to demonstrate the feasibility and performance of integrating rasterization-based radiance fields into real-time pipelines. The primary goal is to build a basic functional prototype, verify that a Gaussian splatting pipeline can successfully provide photorealistic renders to help the vehicle navigate the virtual world, and identify practical areas for future improvements. Additionally, I will also evaluate current capabilities and define clear pathways for future optimization: what it can do, what can’t it do yet, and what it’s best used for. For anyone interested in exploring more general knowledge of NeRFs and Gaussian Splatting, here are the main project pages and some cool videos on YouTube that you might find interesting to watch.              
+
+                  <ul class="list-unstyled d-flex flex-column gap-3">
+                      <li class="d-flex align-items-baseline gap-2">
+                          <span class="badge bg-primary font-monospace">NeRF</span>
+                          <a href="https://www.matthewtancik.com/nerf" target="_blank" class="text-info text-decoration-none link-opacity-75 link-opacity-100-hover fw-semibold">
+                              Representing Scenes as Neural Radiance Fields for View Synthesis <i class="bi bi-box-arrow-up-right small"></i>
+                          </a>
+                      </li>
+                      <li class="d-flex align-items-baseline gap-2">
+                          <span class="badge bg-success font-monospace">3DGS</span>
+                          <a href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/" target="_blank" class="text-info text-decoration-none link-opacity-75 link-opacity-100-hover fw-semibold">
+                              3D Gaussian Splatting for Real-Time Radiance Field Rendering <i class="bi bi-box-arrow-up-right small"></i>
+                          </a>
+                      </li>
+                  </ul>
+
+                  <div class="row g-4 justify-content-center">
+                    <!-- Left Video -->
+                    <div class="col-12 col-md-6 lg-5">
+                      <div class="card h-100 bg-transparent border-0">
+                        <!-- Responsive 16:9 Aspect Ratio Container -->
+                        <div class="ratio ratio-16x9 rounded-4 shadow overflow-hidden border border-secondary border-opacity-20 bg-dark">
+                          <iframe src="https://www.youtube.com/embed/YX5AoaWrowY" title="Reconstruction Demo" allowfullscreen></iframe>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Right Video -->
+                    <div class="col-12 col-md-6 lg-5">
+                      <div class="card h-100 bg-transparent border-0">
+                        <!-- Responsive 16:9 Aspect Ratio Container -->
+                        <div class="ratio ratio-16x9 rounded-4 shadow overflow-hidden border border-secondary border-opacity-20 bg-dark">
+                          <iframe src="https://www.youtube.com/embed/X8yRlA7jqEQ" title="Reconstruction Demo" allowfullscreen></iframe>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row g-4 justify-content-center mt-1">
+                    <!-- Left Video -->
+                    <div class="col-12 col-md-6 lg-5">
+                      <div class="card h-100 bg-transparent border-0">
+                        <!-- Responsive 16:9 Aspect Ratio Container -->
+                        <div class="ratio ratio-16x9 rounded-4 shadow overflow-hidden border border-secondary border-opacity-20 bg-dark">
+                          <iframe src="https://www.youtube.com/embed/JuH79E8rdKc" title="Reconstruction Demo" allowfullscreen></iframe>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Right Video -->
+                    <div class="col-12 col-md-6 lg-5">
+                      <div class="card h-100 bg-transparent border-0">
+                        <!-- Responsive 16:9 Aspect Ratio Container -->
+                        <div class="ratio ratio-16x9 rounded-4 shadow overflow-hidden border border-secondary border-opacity-20 bg-dark">
+                          <iframe src="https://www.youtube.com/embed/T_kXY43VZnk" title="Reconstruction Demo" allowfullscreen></iframe>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+              </div>
+
+
+            </div>
+          </div>
+
+          <!-- Dropdown Option 2 -->
+          <div class="accordion-item text-light">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed fw-bold fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                🕮 Chapter 2: System Architecture Overview
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse">
+              <div class="accordion-body lh-base">                 
+                <h4>The Technology Stack</h4>                    
+                <p>
+                  In 2022, NeRFs (Neural Radiance Fields (NeRF) were first introduced high-fidelity, photorealistic scene reconstruction and view-dependent imaging by implicitly optimizing how light interacts within a real-world environment. While this marked a massive milestone of research in 3D reconstruction, the paradigm shifted entirely in 2023 with the introduction of rasterization-based 3D Gaussian Splatting (3DGS). It was presented by one of the co-authors during my master's at Saarland University, and I suddenly realized possibilities of implementation beyond what traditional use cases for 3D reconstruction can bring. It can be used for high-performance rendering with low computational cost, thus advancing the developments of real-time vision-based applications that require photorealistic perception simulation. Below are the technology stacks being used in the schematics as shown in Figure 2.                
+                </p>
+
+                <dl class="row ps-2">
+                  
+                  <dt class="col-sm-2 text-white border-end border-secondary border-opacity-25 mb-3">Vulkan</dt>
+                  <dd class="col-sm-10 text-light mb-3">Real-time rendering engine. It handles the rasterization pipeline for multi-anchored 3D Gaussian splatting.</dd>
+
+                  <dt class="col-sm-2 text-white border-end border-secondary border-opacity-25 mb-3">TensorRT</dt>
+                  <dd class="col-sm-10 text-light mb-3">Real-time and optimized neural network inference, executing semantic segmentation directly on the rendered camera frames.</dd>
+
+                  <dt class="col-sm-2 text-white border-end border-secondary border-opacity-25 mb-3">CUDA</dt>
+                  <dd class="col-sm-10 text-light mb-3">High-performance computing backbone, enabling a zero-copy memory interop pipeline with Vulkan and accelerating custom parallelized kernels.</dd>
+
+                  <dt class="col-sm-2 text-white border-end border-secondary border-opacity-25 mb-0">ROS2</dt>
+                  <dd class="col-sm-10 text-light mb-0">The core robotics communication middleware to pass data between low-level control loops and high-level planning algorithms.</dd>
+
+                </dl>
+
+                <div class="text-center">
+                  <img src="images/project_scheme_v2.jpg" 
+                    class="img-fluid rounded-3 shadow border border-secondary border-opacity-20 mb-0  " 
+                    alt="Performance Benchmark Metrics Graph"
+                    style="width: auto; display: block;">
+                  <figcaption class="form-text text-secondary small px-2">
+                    Figure 2: Pipeline schematics of the gaussian splatting simulation engine.
+                  </figcaption>
+                </div>
+
+                <hr class="w-100 border-white border-opacity-100 mt-5">
+                <h4>The Closed Loop Pipeline: How it works</h4>                    
+                <p>
+                  The entire system operates as a closed-loop pipeline split between two main applications: the <b>Simulation Engine</b> (low-level) and the <b>Path Planner</b> (high-level). 
+
+                </p>
+
+                <!-- first entry -->
+                <div class="row g-3">                  
+                  <div class="col-auto">
+                    <span class="fs-4 fw-bold text-white">1.</span>
+                  </div>
+                  <div class="col text-secondary">
+                    <h4 class="text-white mb-2 fs-5 fw-bold">The Low-Level Simulation & Control Loop</h4>
+                    <p class="lh-base text-white">
+                      The cycle begins when the simulation engine receives the optimal trajectory information from the planner, which consists of path calculation timestamp, target velocities, and steering angles mapped across a future timeline. Inside the Gaussian Splatting engine, a temporal interpolation algorithm uses the current timestamp to interpolate the exact control parameters (target velocity and steering angle). A local PID (Proportional-Integral-Derivative) controller processes these targets, immediately updating the simulation’s movement vector. As the virtual robot moves, Vulkan updates the viewing perception in real-time.                    
+                    </p>
+                  </div>
+                </div>
+
+                <!-- second entry -->
+                <div class="row g-3">
+                  <div class="col-auto">
+                    <span class="fs-4 fw-bold text-white">2.</span>
+                  </div>
+                  <div class="col text-secondary">
+                    <h4 class="text-white mb-2 fs-5 fw-bold">The High-Speed Perception & Mapping Pipeline</h4>
+                    <p class="lh-base text-white">
+                      With the implementation of the Vulkan-CUDA memory interop layer, TensorRT can directly read the frame out of shared VRAM to achieve a zero-copy pipeline with zero CPU overhead. Next, custom parallelized CUDA kernels process the raw semantic segmentation output, mapping out feature information to final feature data, and instantly remapping the perspective data into a flat, top-down 2D costmap. This costmap array is packed and published over ROS2 to the planning module.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- third entry -->
+                <div class="row g-3">
+                  <div class="col-auto">
+                    <span class="fs-4 fw-bold text-white">3.</span>
+                  </div>
+                  <div class="col text-secondary">
+                    <h4 class="text-white mb-2 fs-5 fw-bold">The High-Level Path Planning Loop</h4>
+                    <p class="lh-base text-white">
+                      On the planning side, the node processes the incoming costmap and processes it through a Frenet Optimal Path planner. By evaluating generated trajectories in a localized coordinate frame, the planner samples multiple trajectories, scores them against the costmap values, and selects the path with the lowest cost. This best path is stamped with a precise generation timestamp and sent back across ROS2 to the simulation engine, successfully completing the high-performance, real-time closed loop.                    
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Dropdown Option 3 -->
+          <div class="accordion-item text-light">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed fw-bold fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                🕮 Chapter 3: Graphics Engine - Anchored Gaussian Splatting
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse">
+
+              <div class="accordion-body text-white lh-base">
+                <div class="row g-4 justify-content-center">
+                  <div class="col-12 col-md-8 col-lg-8 mb-0"> 
+                    <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow">
+                      <iframe src="https://www.youtube.com/embed/_b5LiaTqxgQ" title="Anchored Gaussian Splatting" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                  <figcaption class="form-text text-secondary text-center small px-2">
+                    Video 3: Visualization of anchor switching.
+                  </figcaption>
+
+                </div>
+
+                <hr class="w-100 border-white border-opacity-100 mt-5">
+
+                <h4>Short Introduction to Gaussian Splatting</h4>        
+                
+                <div class="col-12 col-md-7 lg-5 mb-4 mt-4">
+                  <div class="card h-100 bg-transparent border-0">
+                    <!-- Responsive 16:9 Aspect Ratio Container -->
+                    <div class="ratio ratio-16x9 rounded-4 shadow overflow-hidden border border-secondary border-opacity-20 bg-dark">
+                      <iframe src="https://www.youtube.com/embed/eAEocQ57AVA" title="Shader Introduction" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                  <figcaption class="form-text text-secondary text-center small px-2">
+                    Video 4: Shader illustration.
+                  </figcaption>
+                </div>
+
+                <p>
+                  3D Gaussian Splatting (3DGS) reconstructs environments by representing the scene using millions of 3D Gaussian primitives. It utilizes traditional computer graphics concepts that rely on the rasterization method. By leveraging hardware-accelerated rasterization with Vulkan, 3DGS achieves extreme real-time framerates required for performance-critical applications like gaming, AR/VR, and real-time simulation solutions.
+                </p>
+                <p>
+                  To avoid reinventing the wheel and spending months writing low-level Vulkan boilerplate, I built my viewer directly on top of the open-source architecture of <code class="text-warning bg-dark px-1 rounded">vk_gaussian_splatting <span class="text-warning font-monospace small">[1]</span></code>, which provides an excellent foundation for managing raw GPU memory buffers. Choosing Vulkan over the original implementation (CUDA) was an architectural choice. The original 3DGS code was written entirely in CUDA, which treats the GPU as a massive parallel GPGPU (General-Purpose GPU) compute engine, rather than a hardware-accelerated rasterization pipeline like Vulkan. As a specialized graphics API for rendering applications, porting the rasterization pipeline to Vulkan shaders enables fixed-function hardware sorting and vertex interpolation to improve rendering performance on consumer hardware. The video above showcases each stage within the Vulkan engine in processing 3D Gaussian primitives that consist of three main steps:
+                </p>
+
+                <div class="row g-3 mb-4">
+                  <div class="col-auto">
+                    <span class="fs-5 fw-bold text-warning">1.</span>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-white mb-2 fs-5">Compute Shader</h6>
+                    <div class="mb-3 d-flex flex-wrap gap-2">
+                      <span class="badge bg-secondary bg-opacity-25 text-light border border-secondary border-opacity-50 px-2 py-1.5 font-monospace small">Frustum Culling</span>
+                      <span class="badge bg-secondary bg-opacity-25 text-light border border-secondary border-opacity-50 px-2 py-1.5 font-monospace small">Visibility Indexing</span>
+                      <span class="badge bg-secondary bg-opacity-25 text-light border border-secondary border-opacity-50 px-2 py-1.5 font-monospace small">Radix Depth Sorting</span>
+                    </div>
+                    <p class="text-white lh-base mb-0">
+                      The compute shader runs in parallel for every gaussian primitive in the database. It transforms each gaussian’s center into screen space and perform frustum visibility check. If a gaussian is on-screen, it increments global counter and stores its ID in a global visibility index list. It also converts the depth from float to uint32 for faster processing. The stored depth will be arranged by high-speed GPU radix sort for alpha blending. 
+                    </p>
+                  </div>  
+                </div>
+
+                <div class="row g-3 mb-4">
+                  <div class="col-auto">
+                    <span class="fs-5 fw-bold text-warning">2.</span>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-white mb-2 fs-5">Vertex Shader</h6>
+                    <div class="mb-3 d-flex flex-wrap gap-2">
+                      <span class="badge bg-secondary bg-opacity-25 text-light border border-secondary border-opacity-50 px-2 py-1.5 font-monospace small">Quad Warping</span>
+                      <span class="badge bg-secondary bg-opacity-25 text-light border border-secondary border-opacity-50 px-2 py-1.5 font-monospace small">Color Interpolation</span>
+                      <span class="badge bg-secondary bg-opacity-25 text-light border border-secondary border-opacity-50 px-2 py-1.5 font-monospace small">Vertex Interpolation</span>
+                    </div>
+                    <p class="text-white lh-base mb-0">
+                      For every visible splat (projected gaussian into screen), the vertex shader receives its position coordinate and unique splat ID. It fetches the corresponding 3D covariance matrix, diffuse color, and spherical harmonics (SH) coefficients. Each primitive will be enclosed within a quad (rotated bounding box) that is represented using two triangle primitives and mapped to a normalized [-1, 1] coordinate system. To simplify the calculation of gaussian contribution, the UV coordinate space between the vertex (warped) and fragment shaders are decoupled. The original RGB color of the splat is calculated using SH coefficients before color interpolation.
+                    </p>
+                  </div>  
+                </div>
+
+                <div class="row g-3 mb-4">
+                  <div class="col-auto">
+                    <span class="fs-5 fw-bold text-warning">3.</span>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-white mb-2 fs-5">Fragment Shader</h6>
+                    <div class="mb-3 d-flex flex-wrap gap-2">
+                      <span class="badge bg-secondary bg-opacity-25 text-light border border-secondary border-opacity-50 px-2 py-1.5 font-monospace small">2D Gaussian Eval</span>
+                      <span class="badge bg-secondary bg-opacity-25 text-light border border-secondary border-opacity-50 px-2 py-1.5 font-monospace small">Alpha Blending</span>
+                      <span class="badge bg-secondary bg-opacity-25 text-light border border-secondary border-opacity-50 px-2 py-1.5 font-monospace small">Edge Clipping</span>
+                    </div>
+                    <p class="text-white lh-base mb-0">
+                      The fragment shader handles the pixel-level evaluation. It receives interpolated local position coordinates inside the warped quad and directly performs a perimeter clipping validity check if the corresponding splat is within the ellipse boundary (dist < 8). If it’s valid, then the shader calculates the point’s opacity using the simplified 2D gaussian distribution formula <code class="text-warning bg-dark px-1 rounded">exp(-0.5 * dist) * alpha</code> . This ensures smooth alpha blending along the edges of every splat for photorealistic reconstruction.
+                    </p>
+                  </div>  
+                </div>
+
+                <!-- SECOND PART -->
+                <hr class="w-100 border-white border-opacity-50 mt-5">
+
+                <h4>Rendering Multi-Anchored Gaussian Splatting</h4>     
+                
+                <div class="col-12 col-md-7 lg-5 mb-4 mt-4">
+                  <div class="card h-100 bg-transparent border-0">
+                    <!-- Responsive 16:9 Aspect Ratio Container -->
+                    <div class="ratio ratio-16x9 rounded-4 shadow overflow-hidden border border-secondary border-opacity-20 bg-dark">
+                      <iframe src="https://www.youtube.com/embed/Aw9utieF_pk" title="Shader Introduction" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                  <figcaption class="form-text text-secondary text-center small px-2">
+                    Video 5: Anchor switching visualization.
+                  </figcaption>
+
+                </div>
+
+                <div class="mb-4">
+                  <h5 class="text-white mb-1">Memory Optimization via Spatial Partitioning</h5>
+                  <p class="text-white">Rendering large-scene 3D gaussian splatting environments presents a massive memory bottleneck. A typical scene containing millions of primitives easily requires hundreds of megabytes to several gigabytes of VRAM. Scaling this technology to capture the entire city blocks on consumer hardware requires strict pipeline optimization for both training and inference. </p>
+                  <p class="text-white">Several research papers go in the direction of Level of Detail (LOD) frameworks that optimize Gaussian primitives into coarse and fine representations depending on camera distance. Although it works in some scenarios, it does not align with autonomous driving simulation constraints. In a very simple scenario where we only have a single front camera, the vehicle primarily requires high-fidelity geometry for the upcoming road and completely ignores the environment left far behind. This specific constraint presents an opportunity to implement a spatial partitioning system, basically splitting the entire city block into a sequence of smaller sub-segments that are centered around “Anchors”, which can be loaded and unloaded dynamically from host RAM to device VRAM. This pipeline ensures flat and optimized VRAM consumption regardless of how far the driving trajectory is. </p>
+                </div>
+
+                <div class="mb-4">
+                  <h5 class="text-white mb-1">On-The-Fly Reconstruction</h5>
+                  <p class="text-white">The primary inspiration for this segment-based loading comes from the architecture outlined in <code class="text-warning bg-dark px-1 rounded">On-The-Fly-NVS <span class="text-warning font-monospace small">[2]</span></code> paper implementation linked below. Their framework reconstructs the 3D scene dynamically as the agent explores the environment, similar to how a traditional SLAM pipeline works. In this implementation, I directly use pre-calibrated COLMAP camera pose to ensure correctness, but it also supports camera pose estimation to triangulate future poses on the fly. </p>
+                  <p class="text-white">Unlike traditional 3DGS pipelines that rely on Structure-from-Motion (SfM) sparse point clouds for initialization, this pipeline utilizes monocular depth estimation through Meta’s Depth Anything V2 model. The system generates dense depth maps directly from raw RGB data and uses them to project and spawn new gaussians precisely where geometry exists in the physical world, reducing the number of multiview images needed to initiate accurate inverse rendering. </p>
+                  <p class="text-white">To simplify the development, I adopted this training pipeline with aggressive optimizations to make it compatible with my local hardware limits (4GB VRAM). Operating under these severe constraints required some hyperparameter tuning in image downsampling (reducing the input frame resolution), spherical harmonics (SH) capping (level 0 to eliminate memory overhead), and iteration limits (preventing the system from over-allocating primitives). I also modified the training pipeline to avoid loading heavy models, effectively reducing VRAM consumption during training. As a simple prototype simulator just to validate what is possible on limited hardware, the reconstruction was explicitly scoped to map the driving corridor of the street using a single front camera. To achieve cinematic photorealism across an entire urban grid requires a larger computational budget, but this current training and inference successfully produced partitioned segments that seamlessly cover the city block.</p>
+                </div>
+
+
+                <!-- THIRD PART -->
+                <hr class="w-100 border-white border-opacity-50 mt-5">
+
+                <h4>Runtime Performance Result</h4>     
+                
+                <p>
+                  By introducing these training-time constraints and partitioning the city block into spatial segments, we achieve performance and memory advantage at runtime. Instead of forcing the engine to use a monolithic, multi-gigabyte `.ply` scene file, the Vulkan loop simply monitors the vehicle’s real-time coordinates relative to nearby anchor points, as demonstrated in Video 5. To eliminate latency spikes and ensure smooth transitions while swapping segments, the engine utilizes a double-buffering strategy. While the primary (current) buffer renders two nearby active anchor segments, a secondary staging buffer asynchronously pre-loads the upcoming segment in the background. Once the vehicle’s position triggers an anchor change, the engine executes a rapid memory pointer swap, achieving a seamless handoff with zero frame drops.
+                </p>
+                <p>
+                  The implementation was benchmarked locally on an NVIDIA GeForce RTX 3050 Laptop GPU (4GB VRAM), resulting in highly efficient results:                
+                </p>
+
+                <dl class="row ps-2">                  
+                  <dt class="col-sm-2 text-white border-end border-secondary border-opacity-25 mb-3">Framerate Scalability</dt>
+                  <dd class="col-sm-10 text-light mb-3">The engine achieves 90 FPS at 1080p, scaling up to 210 FPS at 480p for high-velocity simulation loops.</dd>
+
+                  <dt class="col-sm-2 text-white border-end border-secondary border-opacity-25 mb-3">Memory Footprint</dt>
+                  <dd class="col-sm-10 text-light mb-3">Active graphics VRAM consumption hovers around 550 MB (this footprint excludes the TensorRT model, which will be elaborated in Chapter 4).</dd>
+                </dl>
+
+                <p>
+                  With further advanced Vulkan memory optimization methods, this memory footprint can be reduced even further, enabling low-tier GPU hardware to run the simulation smoothly. These results prove that multi-anchored gaussian splatting can deliver high-performance, real-time rendering on standard consumer hardware. It opens significant possibilities in real-time simulation for low-end GPU devices.
+                </p>
+
+
+
+              </div>
+
+
+            </div>
+          </div>
+
+
+          <!-- Dropdown Option 4 -->
+          <div class="accordion-item text-light">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed fw-bold fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                🕮 Chapter 4: Perception & Compute - The CUDA/TensorRT Pipeline
+              </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse">
+              <div class="accordion-body text-white lh-base">
+
+                <!-- FIRST PART -->
+                <div class="row g-4 justify-content-center">
+                  <div class="col-12 col-md-8 col-lg-8 mb-0"> 
+                    <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow">
+                      <iframe src="https://www.youtube.com/embed/ITsSZUCRrx0" title="Perception Result" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                  <figcaption class="form-text text-secondary text-center small px-2">
+                    Video 6: Perception system output.
+                  </figcaption>
+                </div>
+
+                <hr class="w-100 border-white border-opacity-100 mt-5">
+
+                <h4>Inspiration</h4>
+
+                <p>
+                  Ever since discovering autonomous driving systems, I have been fascinated by the complex challenges of processing real-time sensor streams to execute vehicle control algorithms. The technology stacks are uniquely multidisciplinary, from robotics perception, simultaneous localization and mapping (SLAM), and path planning to even covering large language model (LLM) inference. Looking from a robotics background, there are numerous things that could go wrong, hence the need for an advanced simulation system to validate everything before it goes into physical hardware.
+                </p>
+
+                <p>
+                  To explore these domains without any physical risk, utilizing a simulation is one of the main requirements. In this industry, the open-source CARLA simulator is one of the most widely known for simulating self-driving cars. It was built on Unreal Engine 4 and 5, which also provide near-photorealistic rendering with a suite of sensors, including IMUs, LiDAR, odometry, and high-resolution cameras.
+                </p>
+
+                <p>
+                  However, running such an advanced simulator presents severe resource challenges, as it frequently demands well over 4GB of VRAM alongside massive RAM and disk space overhead. This inspires me to try finding solutions through Gaussian splatting (previous chapter) and optimized neural inference with a lower amount of unnecessary computational overhead. 
+                </p>
+
+                <!-- SECOND PART -->
+                <hr class="w-100 border-white border-opacity-50 mt-5">
+                
+                <h4>Zero-Copy Vulkan and CUDA (Memory Interop)</h4>
+
+                <!-- image visualization part -->
+                <div class="row g-4 justify-content-center my-2">
+                  <div class="col-12 col-md-6">
+                    <figure class="text-center mb-0">
+                      <div class="ratio ratio-16x9 rounded-3 shadow overflow-hidden border border-secondary border-opacity-10 mb-0">
+                        <img src="images/image 1.jpg" class="img-fluid object-fit-cover" alt="First setup visualization">
+                      </div>
+                      <figcaption class="form-text text-secondary small px-2">
+                        Figure 3: Passing frames through CPU.
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <figure class="text-center mb-0">
+                      <div class="ratio ratio-16x9 rounded-3 shadow overflow-hidden border border-secondary border-opacity-10 mb-0">
+                        <img src="images/image 2.jpg" class="img-fluid object-fit-cover" alt="Second setup visualization">
+                      </div>
+                      <figcaption class="form-text text-secondary small px-2">
+                        Figure 4: Passing frames through interop.
+                      </figcaption>
+                    </figure>
+                  </div>
+                </div>
+
+                <p>
+                  Traditional simulation setups pull the rendered frame down to the CPU just to pass it over to an AI model for inference as shown in Figure 3, which causes unnecessary data lag as the inference itself is also performed inside the same GPU.
+                </p>
+
+                <p>
+                  My solution cuts out this middle stage entirely as shown in Figure 4. Instead of treating graphics and AI inference as isolated applications separated by the CPU, my engine allocates a singular block of physical VRAM for each render image. Using external memory handles via a Vulkan-CUDA interop pipeline, the Vulkan graphics pipeline maps its image buffers directly into a virtual memory space that NVIDIA CUDA can reference simultaneously.
+                </p>
+
+                <p>
+                  The moment the Vulkan shader finishes rendering the gaussian splatting scene, the pixels are already exactly where TensorRT needs them to be. As soon as the previous execution cycle clears, the engine queues the next frame’s data preprocessing and triggers TensorRT asynchronously. Keeping the entire workflow locked firmly inside VRAM produces an instant, zero-copy inference pipeline.
+                </p>
+
+                <p>
+                  However, the architecture on the left is not all bad. This particular example makes it possible to simulate even more advanced rendering and inference scenarios. For example, the scene could be rendered in AMD Radeon, and the neural inference could be performed on an NVIDIA CUDA graphics card. Hence, neither process will interfere with the other. Although moving the data through the CPU could incur some slowdowns along the way, it’s still an advanced approach to optimise all available resources.
+                </p>
+
+                
+                <!-- THIRD PART -->
+                <hr class="w-100 border-white border-opacity-50 mt-5">
+
+                <h4>TensorRT Parallel Inference</h4>
+                
+                <div class="mb-4 mt-4">
+                  <!-- <h5 class="text-white mb-1 mt-4">Parallel Inference</h5> -->
+  
+                  <figure class="text-center mb-3">
+                    <div class="shadow overflow-hidden border border-secondary border-opacity-10 mb-2 mx-auto" style="max-width: 1000px;">
+                      <img src="images/image 3.jpg" class="img-fluid d-block mx-auto" alt="Second setup visualization">
+                    </div>
+                    
+                    <figcaption class="form-text text-secondary small px-2">
+                      Figure 5: Parallel inference pipeline in managing swapchain images sequence.
+                    </figcaption>
+                  </figure>
+
+                  <p class="text-white">To achieve real-time rendering and autonomous vehicle control, the system isolates the simulation graphics and control loop from the deep learning computer vision inference. A core challenge arises from a fundamental frequency mismatch. The Vulkan rendering engine and vehicle control loops need to operate at an ultra-high frequency (200 FPS), where the TensorRT inference pipeline executes at a lower frequency (~60 FPS). In a shared-memory architecture between Vulkan and CUDA, it requires coordinating cross-API execution boundaries, such as Vulkan-CUDA external semaphores. It serves as a GPU-GPU synchronization mechanism, triggering another process immediately after the current one completes. However, its implementation across mismatched frequencies forces the high-speed loops to stall and create a severe frame-rate bottleneck. </p>
+                  <p class="text-white">To avoid this, I utilize a simple variable switching combined with a multi-buffered color buffer layout. As shown in Figure 5, during the brief sub-milisecond window when the CUDA format conversion is actively preprocessing a VRAM texture, the state machine programmatically routes Vulkan’s active rendering pass to another index. Hence, this approach guarantees zero-copy data integrity and avoids tearing/race conditions between in-flight frames. </p>
+                  <p class="text-white">Ideally, such a pipeline should end up with 200 FPS Vulkan rendering and 60 FPS TensorRT inference. However, even with pipeline and stream separation, launching the deep learning inference pass pins the physical GPU utilization at 100%. Because TensorRT heavily saturates hardware’s Streaming Multiprocessors (SMs) and Tensor Cores, the GPU’s internal hardware scheduler is forced to time-slice resources. The concurrent Vulkan rasterization queues experience hardware-level starvation, temporarily dragging the main rendering framerate down to match ~60Hz inference compute bound. Hence, both simulation and inference results are produced at 60 Hz, which is satisfactory enough for now but can be improved in the future. </p>
+                </div>
+
+                <!-- FOURTH PART -->
+                <hr class="w-100 border-white border-opacity-50 mt-5">
+
+                <h4>Feature Engineering</h4>
+
+                <div class="mb-4">
+                  <div class="col-12 col-md-7 lg-5 mb-4 mt-4">
+                    <div class="card h-100 bg-transparent border-0">
+                      <div class="ratio ratio-16x9 rounded-4 shadow overflow-hidden border border-secondary border-opacity-20 bg-dark">
+                        <iframe src="https://www.youtube.com/embed/UaLNFf6exj0" title="Feature Engineering" allowfullscreen></iframe>
+                      </div>
+                    </div>
+                    <figcaption class="form-text text-secondary text-center small px-2">
+                      Video 7: Feature engineering result on semantic segmentation.
+                    </figcaption>
+                  </div>
+
+                  <p class="text-white">Semantic segmentation assigns a categorical class label to every individual pixel in an input image. For this pipeline, I use a pre-trained DeepLabv3+ network on Pascal VOC & Cityscapes datasets, optimized and quantized with an FP16 precision execution engine using the TensorRT model compiler. Rather than focusing on the internal layer mechanics of the network, this subsection details the custom feature engineering developed to transform the raw model outputs into road segmentation results. </p>
+                  <p class="text-white">While retraining the model or fine-tuning its final layer to output a single-channel grayscale costmap is the most common approach, I decided to keep the architecture as-is and just focus on playing around with the feature vector to produce similar results. Looking into the list of the dataset's labels, the only useful one for road segmentation is index 0, and I will categorize other labels between 2 and 18 (except 9) as obstacles. </p>
+
+                  <div class="mb-3">
+                    <div class="bg-dark bg-opacity-50 border border-secondary border-opacity-25 rounded-3 p-3 font-monospace small text-secondary">
+                      <div class="row g-2">
+                        
+                        <div class="col-6">
+                          <div class="mb-1"><span class="text-warning">00:</span> road</div>
+                          <div class="mb-1"><span class="text-warning">01:</span> sidewalk</div>
+                          <div class="mb-1"><span class="text-warning">02:</span> building</div>
+                          <div class="mb-1"><span class="text-warning">03:</span> wall</div>
+                          <div class="mb-1"><span class="text-warning">04:</span> fence</div>
+                          <div class="mb-1"><span class="text-warning">05:</span> pole</div>
+                          <div class="mb-1"><span class="text-warning">06:</span> traffic light</div>
+                          <div class="mb-1"><span class="text-warning">07:</span> traffic sign</div>
+                          <div class="mb-1"><span class="text-warning">08:</span> vegetation</div>
+                          <div><span class="text-warning">09:</span> terrain</div>
+                        </div>
+                        
+                        <div class="col-6">
+                          <div class="mb-1"><span class="text-warning">10:</span> sky</div>
+                          <div class="mb-1"><span class="text-warning">11:</span> person</div>
+                          <div class="mb-1"><span class="text-warning">12:</span> rider</div>
+                          <div class="mb-1"><span class="text-warning">13:</span> car</div>
+                          <div class="mb-1"><span class="text-warning">14:</span> truck</div>
+                          <div class="mb-1"><span class="text-warning">15:</span> bus</div>
+                          <div class="mb-1"><span class="text-warning">16:</span> train</div>
+                          <div class="mb-1"><span class="text-warning">17:</span> motorcycle</div>
+                          <div><span class="text-warning">18:</span> bicycle</div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="text-white">At the final layer of a standard semantic segmentation pipeline, networks typically employ an argmax function to force a categorical decision on what object a pixel represents. While visually clean, this approach often discarded classification uncertainty, which is still important to use for robot navigation. To preserve this, I engineered a custom feature computation pipeline with three stages as follows: </p>
+
+                  <div class="mb-3">
+                    <div class="row g-3 mb-3">
+                      <div class="col-auto">
+                        <span class="fs-5 fw-bold text-warning">1.</span>
+                      </div>
+                      <div class="col">
+                        <h6 class="text-white mb-1 fw-bold">Maximize Multi-Channel Information</h6>
+                        <p class="text-white small mb-0">
+                          A maximization across features inside obstacle channels ensures capturing the single highest local threat so that the cost is high and the pipeline learns how to avoid it.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                      <div class="col-auto">
+                        <span class="fs-5 fw-bold text-warning">2.</span>
+                      </div>
+                      <div class="col">
+                        <h6 class="text-white mb-1 fw-bold">Clamping and Normalization</h6>
+                        <p class="text-white small mb-0">
+                          Both the extracted obstacle metric and the baseline road channel are clamped at their thresholds, then scaled smoothly into a normalized [0, 1] probability space.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="row g-3 mb-0">
+                      <div class="col-auto">
+                        <span class="fs-5 fw-bold text-warning">3.</span>
+                      </div>
+                      <div class="col">
+                        <h6 class="text-white mb-1 fw-bold">Blending Pipeline</h6>
+                        <p class="text-white small mb-0">
+                          Combine both normalizations and the inverted result (for the road), resulting in a single grayscale output that is usable for the costmap.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="text-white">To clearly illustrate this logic prior to its parallel CUDA kernel implementation, the algorithm can be represented by the following Python pseudocode: </p>
+
+
+                <div class="mb-3">
+                  <div class="d-flex justify-content-between align-items-center bg-dark bg-opacity-75 border border-secondary border-opacity-25 rounded-top p-2 px-3">
+                    <span class="text-secondary small font-monospace">Costmap Feature Extraction Pipeline</span>
+                    <span class="badge bg-secondary bg-opacity-25 text-warning font-monospace small">python</span>
+                  </div>
+
+                  <pre class="bg-dark bg-opacity-50 border border-secondary border-opacity-25 border-top-0 rounded-bottom p-3 m-0 overflow-x-auto"><code class="font-monospace small text-light d-block" style="white-space: pre; line-height: 1.6; letter-spacing: 0.3px;">import numpy as np
+
+<span class="text-secondary opacity-75"># 0. Grab your raw data (assume its shape is (19, height, width))</span>
+data_road = inference_data[0, :, :]
+
+<span class="text-secondary opacity-75"># 1. Skip channel 0, 1 and 9 for obstacle (0-road, 1-sidewalk, 9-terrain)</span>
+obstacle_channels = np.concatenate([inference_data[2:9, :, :], inference_data[10:19, :, :]], axis=0)
+data_obstacle = np.max(obstacle_channels, axis=0)  <span class="text-success text-opacity-75"># Handled completely in parallel in CUDA!</span>
+
+<span class="text-secondary opacity-75"># 2.a. Clip and Min-Max Normalize Obstacles [2.5, 15.0]</span>
+clip_obs = np.clip(data_obstacle, 2.5, 15.0)
+data_obstacle_norm = (clip_obs - 2.5) / (15.0 - 2.5)
+
+<span class="text-secondary opacity-75"># 2.b. Clip, Normalize, and Invert Road [2.5, 10.0]</span>
+clip_road = np.clip(data_road, 2.5, 10.0)
+data_road_norm_inverted = 1.0 - ((clip_road - 2.5) / (10.0 - 2.5))
+
+<span class="text-secondary opacity-75"># 3. Data Blending (90% weight on road absence)</span>
+ratio = 0.9
+final_cost = (ratio * data_road_norm_inverted) + ((1.0 - ratio) * data_obstacle_norm)</code></pre>
+</div>
+                  
+                  <p class="text-white">Bypassing a categorical classification, this custom kernel yields a smooth costmap probability where traversable road surfaces have the lowest cost, hence the darker color. In the next step, this road segmentation result will be transformed into a front-facing Bird's-Eye-View (BEV) costmap used by the path planner to evaluate its optimal driving path. </p>
+
+                </div>
+
+
+              <!-- FIFTH PART -->
+              <hr class="w-100 border-white border-opacity-50 mt-5">
+
+              <h4>Bird's-Eye-View (BEV) Mapping</h4>
+              <div class="mb-3">
+                <div class="col-12 col-md-7 lg-5 mb-4 mt-4">
+                  <div class="card h-100 bg-transparent border-0">
+                    <div class="ratio ratio-16x9 rounded-4 shadow overflow-hidden border border-secondary border-opacity-20 bg-dark">
+                      <iframe src="https://www.youtube.com/embed/ZzXZv-ZD24g" title="Feature Engineering" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                  <figcaption class="form-text text-secondary text-center small px-2">
+                    Video 8: BEV mapping result using CUDA.
+                  </figcaption>
+
+                </div>
+
+                <p class="text-white">Transforming the resulting grayscale costmap into an orthographic, top-down Bird’s-Eye-View (BEV) representation can be performed through three different paths: </p>
+
+                <div class="row g-3 mb-3">
+                  <div class="col-auto">
+                    <span class="fs-5 fw-bold text-warning">1.</span>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-white mb-1 fw-bold">Planar Homography Transformations (Perspective Warping)</h6>
+                    <p class="text-white small mb-0">
+                      This approach utilizes a 2D homography matrix via OpenCV’s perspective warp mapped from explicit source and destination UV anchor pixels. Although it is trivial and straightforward, it relies on a fragile assumption that the ground should remain perfectly flat relative to a completely static camera. In a real-world driving scenario, vehicle pitch, roll, and road bumps instantly change the homography matrix, introducing severe spatial distortions.
+                    </p>
+                  </div>
+                </div>
+                
+                <div class="row g-3 mb-3">
+                  <div class="col-auto">
+                    <span class="fs-5 fw-bold text-warning">2.</span>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-white mb-1 fw-bold">Forward Ray-Plane Intersection (Ray-Casting)</h6>
+                    <p class="text-white small mb-0">
+                      This method is inspired by computer graphics' ray-plane approach to find an intersection of a ray out of the camera center for every pixel in the raw perspective map. Under assumed vehicle height, we will directly acquire the exact position a ray intersects and map it out to the BEV result. However, it causes severe pixel-overlapping artifacts (aliasing) while leaving sparse gaps in the BEV that look like unmapped holes. As an addition, the massive ray-intersection computation overhead makes it completely impractical for real-time loops.                    </p>
+                  </div>
+                </div>
+
+                <div class="row g-3 mb-0">
+                  <div class="col-auto">
+                    <span class="fs-5 fw-bold text-warning">3.</span>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-white mb-1 fw-bold">Inverse Grid-Sampling Map (Selected Approach)</h6>
+                    <p class="text-white small mb-0">
+                        This is a deterministic solution that optimized both data integrity and execution speed. Instead of projecting pixels forward from the camera, the algorithm defines the boundaries of the final 500 x 500 BEV canvas directly, where each pixel maps to a spatial region ranging from 0 to 40 meters across the lateral and longitudinal axes. For each coordinate in the target BEV grid, the pipeline calculates its corresponding coordinate back in the camera’s perspective frame using extrinsic and intrinsic camera matrix transformation. Since the movement in this implementation is assumed to be in 2D, the lookup index can simply be stored to achieve low latency and real-time BEV costmap mapping. A Python implementation of this approach using NumPy and OpenCV is actually sufficient for prototyping. However, I implemented the same approach through the CUDA API to push the maximum performance of the hardware.                    </p>
+                  </div>
+                </div>
+              </div>
+            
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Dropdown Option 5 -->
+          <div class="accordion-item text-light">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed fw-bold fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                🕮 Chapter 5: Control & Path Planning - Frenet Optimal Path Planner & Pure Pursuit Controller
+              </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse">
+              <div class="accordion-body text-white lh-base">
+                <div class="row g-4 justify-content-center mb-3">
+                  <div class="col-12 col-md-8 col-lg-8 mb-0"> 
+                    <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow">
+                      <iframe src="https://www.youtube.com/embed/RpeMYghMu3c" title="Perception Result" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                  <figcaption class="form-text text-secondary text-center small px-2">
+                    Video 9: Path planning and controller result.
+                  </figcaption>
+                </div>
+
+                <p>
+                  The path-planning framework and its controller are fully implemented and running smoothly within the engine, as shown in the video. However, the mathematical analysis and explanation regarding the approach of the Frenet optimal path planner and its pure-pursuit controller still need a lot more time to write. Therefore, I decided to release this written documentation and update the info a bit later. The main functionalities of this simulation have been achieved through the previous two chapters, and the path planner only serves as a use case of this simulation engine. 
+                </p>
+
+                <p>
+                  If you want to look more into the approach, consider looking into this following documentations as well:
+                </p>
+
+                <div class="mb-5">
+
+                  <ul class="list-unstyled d-flex flex-column gap-3">
+                    <li class="d-flex align-items-baseline gap-2">
+                      <span class="badge bg-secondary bg-opacity-25 text-white border border-secondary border-opacity-50 px-2 py-1 me-3 small">GitHub</span>
+                      <a href="https://github.com/AtsushiSakai/PythonRobotics#optimal-trajectory-in-a-frenet-frame" target="_blank" class="text-info text-decoration-none link-opacity-75 link-opacity-100-hover fw-semibold">
+                              [PythonRobotics] Optimal Trajectory in a Frenet Frame <i class="bi bi-box-arrow-up-right small"></i>
+                          </a>
+                    </li>
+                    <li class="d-flex align-items-baseline gap-2">
+                      <span class="badge bg-secondary bg-opacity-25 text-white border border-secondary border-opacity-50 px-2 py-1 me-3 small">GitHub</span>
+                      <a href="https://github.com/AtsushiSakai/PythonRobotics/blob/6fe491fa737b0f61d8579168c8b41d58f0b9602d/PathTracking/pure_pursuit/pure_pursuit.py" target="_blank" class="text-info text-decoration-none link-opacity-75 link-opacity-100-hover fw-semibold">
+                              [PythonRobotics] Pure Pursuit Tracking Module <i class="bi bi-box-arrow-up-right small"></i>
+                          </a>
+                    </li>
+                    <li class="d-flex align-items-baseline gap-2">
+                      <span class="badge bg-secondary bg-opacity-25 text-white border border-secondary border-opacity-50 px-2 py-1 me-3 small">Wikipedia</span>
+                      <a href="https://en.wikipedia.org/wiki/PID_controller" target="_blank" class="text-info text-decoration-none link-opacity-75 link-opacity-100-hover fw-semibold">
+                              PID Controller Theory & Mathematics <i class="bi bi-box-arrow-up-right small"></i>
+                          </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dropdown Option 6 -->
+          <div class="accordion-item text-light">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed fw-bold fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix">
+                🕮 Chapter 6: Conclusion & References
+              </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse">
+              <div class="accordion-body text-light lh-base">
+                <p>This project demonstrates the feasibility of utilizing a 3D Gaussian Splatting approach to power a lightweight, real-time autonomous driving simulation. By natively combining low-level Vulkan rendering loops with CUDA-accelerated TensorRT inference pipelines, the system achieves highly scalable performance directly on consumer-grade hardware. While the current architecture serves as an optimized sandbox simulation, improvements in its training and inference pipelines will extend the engine as an open-source asset, offering a highly accessible experimentation platform for robotics hobbyists, researchers, and students.</p>
+                <p>If you find this documentation beneficial and you have some questions, corrections, or suggestions, feel free to chat and point out my mistakes.</p>
+              <div class="mb-5">
+  <h5 class="text-white mb-3">References:</h5>
+
+  <div class="d-flex flex-column gap-3">
+    
+    <div class="d-flex align-items-center fs-6">
+      <span class="badge bg-secondary bg-opacity-25 text-white border border-secondary border-opacity-50 px-2 py-1 me-3 small">GitHub</span>
+      <a href="https://github.com/nvpro-samples/vk_gaussian_splatting/" target="_blank" class="text-info text-decoration-none link-opacity-75 link-opacity-100-hover fw-semibold">
+        [nvpro-samples] vk_gaussian_splatting (Vulkan Framework) <i class="bi bi-box-arrow-up-right small"></i>
+      </a>
+    </div>
+
+    <div class="d-flex align-items-center fs-6">
+      <span class="badge bg-secondary bg-opacity-25 text-white border border-secondary border-opacity-50 px-2 py-1 me-3 small">GitHub</span>
+      <a href="https://github.com/graphdeco-inria/on-the-fly-nvs/" target="_blank" class="text-info text-decoration-none link-opacity-75 link-opacity-100-hover fw-semibold">
+        [graphdeco-inria] On-the-fly Reconstruction for Large-Scale Novel View Synthesis from Unposed Images <i class="bi bi-box-arrow-up-right small"></i>
+      </a>
+    </div>
+
+    <div class="d-flex align-items-center fs-6">
+      <span class="badge bg-secondary bg-opacity-25 text-light border border-secondary border-opacity-50 px-2 py-1 me-3 small">Tooling</span>
+      <a href="https://rerun.io/" target="_blank" class="text-info text-decoration-none link-opacity-75 link-opacity-100-hover fw-semibold">
+        [Rerun.io] The Data Layer for Physical AI <i class="bi bi-box-arrow-up-right small"></i>
+      </a>
+    </div>
+
+  </div>
+</div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div> <!-- /accordion -->
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-4 text-center border-top border-secondary border-opacity-10 mt-5">
+    <p class="text-muted small mb-0">&copy; 2026 Yudhistira Yoga Semeru. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle with Popper (Required for Accordion triggers) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+</body>
+</html>
