@@ -15,23 +15,23 @@
 
       <div class="ratio ratio-16x9">
         <iframe
-          src="https://www.youtube.com/embed/gQlWGThLY_0 "
-          allowfullscreen
-        ></iframe>
-      </div>
-      <figcaption class="text-center mt-0 fst-italic">
-        Presentation
-      </figcaption>
-      
-    </br>
-      <div class="ratio ratio-16x9">
-        <iframe
           src="https://www.youtube.com/embed/h-I1PVjiC9U "
           allowfullscreen
         ></iframe>
       </div>
       <figcaption class="text-center mt-0 fst-italic">
         Short demo
+      </figcaption>
+      
+    </br>
+      <div class="ratio ratio-16x9">
+        <iframe
+          src="https://www.youtube.com/embed/_b5LiaTqxgQ "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <figcaption class="text-center mt-0 fst-italic">
+        Visualization on how Multi-Anchor Gaussian Splatting works
       </figcaption>
 
 
@@ -42,7 +42,7 @@
       <h6>
         Project page:
         <a href="https://yudzyoga.github.io/project/robotics/gsplat-ad-sim/" target="_blank"
-          >[GitHub Pages] GSplat Autonomous Driving Simulator</a
+          >[GitHub Pages] Multi-Anchor 3D Gaussian Splatting for AD Simulator</a
         >
       </h6>
 
@@ -55,11 +55,11 @@
       <br />
       <h6>Description:</h6>
       <p>
-        Building a complex robotics system is highly challenging. Aside from requiring an interdisciplinary technical implementation, developers face numerous pitfalls throughout the design, production, and testing phases. Generally, validation is performed in two ways. It may be physical testing on an expensive, custom hardware rig or deployment within a sandbox simulation environment. The most widely adopted sandbox for robotics is Gazebo, which provides core physics and control functionalities to test autonomous algorithms. Among these, simulating a color camera sensor is critical for vision-based recognition and navigation. However, generating high-performance photorealistic camera renders at a low computational cost remains a massive bottleneck.
+        Rendering large-scene 3D gaussian splatting environments presents a massive memory bottleneck. A typical scene containing millions of primitives easily requires hundreds of megabytes to several gigabytes of VRAM. Scaling this technology to capture the entire city blocks on consumer hardware requires strict pipeline optimization for both training and inference.
       </p>
     
       <p>
-        With all the challenges in robotics and advancements in 3D reconstruction research, I started to look into making a “fun-yet-useful” project that presents a proof-of-concept (PoC) to demonstrate the feasibility and performance of integrating rasterization-based radiance fields into real-time pipelines. The primary goal is to build a basic functional prototype, verify that a Gaussian splatting pipeline can successfully provide photorealistic renders to help the vehicle navigate the virtual world, and identify practical areas for future improvements.
+        The pipeline works by separating the scene into multiple sub-segments that are centered around "Anchors" which can be loaded and unloaded dynamically from host RAM to device VRAM, ensuring flat and optimized VRAM consumption regardless of how far away the driving trajectory is. The vulkan pipeline ended up with 210 FPS at 480p, 90 FPS at 1080p, and when combined with TensorRT inference, it still produces real-time performance with 60 FPS at 480p. The graphics VRAM consumption hovers around 650 MB (including TensorRT model), demonstrating that such approach can be used on low-end consumer GPU devices. With further improvements in training and inference pipelines, it is extendable as an open-source experimentation platform for robotics hobbyists, researches, and students.
       </p>    
     
       <p>
